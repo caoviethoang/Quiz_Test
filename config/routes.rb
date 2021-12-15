@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+  resources :exams
+  resources :questions
+  resources :answers
+  resources :categories
   devise_for :admins
-  root to: "admin#index"
-  resources :admin
+  root to: "home#index"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -31,6 +31,9 @@ gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.1'
 gem "devise-i18n"
 gem "devise-bootstrap5"
+gem 'bootstrap-sass'
+gem 'bootstrap', '~> 5.1', '>= 5.1.3'
+gem 'jquery-rails', '~> 4.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

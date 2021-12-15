@@ -12,12 +12,14 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar-admin' %>
     
     <div class="container-fluid">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <%= render 'layout_admin/navbar' %>
+    <%= render 'layout_admin/leftside' %>
+    
       <%= yield %>
     </div>
+    <%= render 'layout_admin/footer' %>
   </body>
+
 </html>

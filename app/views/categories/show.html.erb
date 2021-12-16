@@ -1,4 +1,14 @@
-<div class="container" >
-<h1>Categories#show</h1>
-<p>Find me in app/views/categories/show.html.erb</p>
+<div class="page-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="white-box">
+          <h2></b>Category information</b></h2>
+          <p>Title: <%= @category.title %></p>
+          <%= link_to 'Edit', edit_category_path(@category), class: 'btn btn-danger' %>
+          <%= link_to 'Back', categories_path, class: 'btn btn-secondary' %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

@@ -30,7 +30,7 @@ class AnswersController < ApplicationController
   end
 
   def update
-    if @answer.update_attributes(answerparams)
+    if @answer.update(answerparams)
       redirect_to answer_path
     else
       flash[:danger] = "Update failed"
@@ -39,9 +39,9 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    if @answer.destroy
-      redirect_to new_question_path
-    end
+    @answer = Answer.find(params[:id])
+    @answer.destroy
+    redirect_to answers_path
   end
 
   private

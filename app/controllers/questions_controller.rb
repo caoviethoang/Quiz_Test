@@ -31,7 +31,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    if @question.update_attributes(question_params)
+    if @question.update(question_params)
       redirect_to question_path
     else
       flash[:danger] = "Update failed"

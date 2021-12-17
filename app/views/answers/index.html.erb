@@ -22,6 +22,7 @@
                   <th class="border-top-0"><b>Question</b></th>
                   <th class="border-top-0"><b>Title</b></th>
                   <th class="border-top-0"><b>Corrected</b></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -32,6 +33,10 @@
                     <td><%= Question.where(id: anwser.question_id).pluck(:title) %></td>
                     <td><%= anwser.title %></td>
                     <td><%= anwser.iscorrected %></td>
+                    <td>
+                      <%= link_to 'Delete', anwser, method: :delete, data: { confirm: 'Are you sure?' },
+                                                                      class: 'btn btn-danger'%>
+                    </td>
                   </tr>
                 <% end %>
               </tbody>

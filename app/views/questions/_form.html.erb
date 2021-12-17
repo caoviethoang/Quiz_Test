@@ -19,22 +19,22 @@
   </div>
   <div class="field answers-container">
     <table class="table table-borderless" id="mytb">
-      <%= q.fields_for :answers do |ff| %>
+      <%= q.fields_for :answers do |a| %>
         <thead>
           <tr>
             <th>
-              <%= ff.label :title, 'Answers', class: 'form-label' %>
+              <%= a.label :title, 'Answers', class: 'form-label' %>
             </th>
             <th>Correct ?</th>
             <th></th>
           </tr>
         </thead>
-        <tbody id="tbody">
-          <tr>
-            <td><%= ff.text_field :title, class: 'form-control' %></td>
+        <tbody>
+          <tr id="add_ans" class="answer">
+            <td><%= a.text_field :title, class: 'form-control' %></td>
             <td>
               <div class="form-check mt-3 ml-4">
-                <%= ff.check_box :iscorrected, {}, true, false %> <br />
+                <%= a.check_box :iscorrected %> <br />
               </div>
             </td>
           </tr>
@@ -52,20 +52,18 @@
 
 <script>
   function myFunction() {
-    var table = document.getElementById("mytb");
-    var length = $(".form-control").length;
-    var div = document.createElement("div");
-    var input = document.createElement("input");
+    var number = document.getElementsByClassName("answer").length;
 
-    input.type = "text";
-    input.name = "question[answers_attributes]["+ length +"][answers]"
-    input.className = "form-control"
-    input.id = "question_answers_attributes_" + length + "answers"
-
-    div.appendChild(input)
-    $(".answers-container").append(div);
-  }
-
+    var tableRow = "<tr><td class='answer'><input class=\"form-control\" type=\"text\"" +
+    "name=\"question[answers_attributes][" + number + "][title]\" id=\"question_answers_attributes_" + number + "_title\"></td><td>" +
+    "<div class=\"form-check mt-3 ml-4\">" +
+    "<input name=\"question[answers_attributes][" + number + "][iscorrected]\" type=\"hidden\" value=\"0\">" +
+    "<input type=\"checkbox\" value=\"1\" name=\"question[answers_attributes][" + number + "][iscorrected]\"" +
+    "id=\"question_answers_attributes_" + number + "_iscorrected\"> <br>" +
+    "</div></td></tr>";
+    
+    $("#mytb tbody").append(tableRow);
+  };
 </script>
 
 <style type="text/css">

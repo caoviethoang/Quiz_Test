@@ -40,15 +40,15 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    if @question.destroy
-      redirect_to questions_path
-    end
+    @question = Question.find(params[:id])
+    @question.destroy
+    redirect_to questions_path
   end
 
   private
 
   def question_params
-    params.require(:question).permit(:title, :kind, :category_id, answers_attributes: [:id, :title, :iscorrected])
+    params.require(:question).permit(:title, :kind, :category_id, answers_attributes: [:id, :title, :iscorrected, :_destroy])
   end
 
   def set_question

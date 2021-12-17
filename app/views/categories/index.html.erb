@@ -15,23 +15,23 @@
                   <table class="table text-nowrap">
                     <thead>
                         <tr>
-                          <th class="border-top-0"><b>ID</b></th>
+                          <th class="border-top-0"><b>#</b></th>
                           <th class="border-top-0"><b>Title</b></th>
                           <th class="border-top-0"><b>Functions</b></th>
                         </tr>
                     </thead>
                     <tbody>
-                      <% @categories.each do |category| %>
+                      <% @categories.each_with_index do |category, index| %>
                         <tr>
                           <th scope="row">
-                            <%= category.id%>
+                            <%= index %>
                           </th>
                           <td><%= category.title %></td>
                           <td>
-                          <%= link_to 'Show', category_path(category), class: 'btn btn-info' %>
-                          <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-warning' %>
-                          <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' },
-                                                                                class: 'btn btn-danger'%>
+                            <%= link_to 'Show', category_path(category), class: 'btn btn-info' %>
+                            <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-warning' %>
+                            <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' },
+                                                                                  class: 'btn btn-danger'%>
                           </td>
                         </tr>
                       <% end %>

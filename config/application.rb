@@ -18,5 +18,9 @@ module ZinzaTest
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
+    config.action_dispatch.default_headers = {
+      'X-Frame-Options' => 'DENY',
+      'X-UA-Compatible' => 'IE=EmulateIE7'
+    }
   end
 end

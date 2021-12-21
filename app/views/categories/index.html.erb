@@ -21,19 +21,8 @@
                         </tr>
                     </thead>
                     <tbody>
-                      <% @categories.each do |category| %>
-                        <tr>
-                          <th scope="row">
-                            <%= category.id%>
-                          </th>
-                          <td><%= category.title %></td>
-                          <td>
-                          <%= link_to 'Show', category_path(category), class: 'btn btn-info' %>
-                          <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-warning' %>
-                          <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' },
-                                                                                class: 'btn btn-danger'%>
-                          </td>
-                        </tr>
+                      <% @categories.limit(1).each do |category| %>
+                        <%= render @categories%>
                       <% end %>
                     </tbody>
                   </table>

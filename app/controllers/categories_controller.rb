@@ -47,8 +47,5 @@ class CategoriesController < ApplicationController
 
   def set_category
     @category = Category.find(params[:id])
-    if @category.blank?
-      render file: 'public/404.html'
-    end
   end
 end

@@ -36,22 +36,24 @@
               <div class="form-check mt-3 ml-4">
                 <%= a.check_box :iscorrected %> <br />
               </div>
+              <%= a.hidden_field :_destroy %>
             </td>
             <td><button type="button" onclick="removeAns()" class="btn btn-danger">X</button></td>
+            
           </tr>
         </tbody>
       <% end %>
     </table>
   </div>
   <div class="field mt-2">
-    <button type="button" onclick="myFunction()">Add anwser</button>
+    <button type="button" onclick="addAnswer()">Add anwser</button>
   </div>
   <%= q.submit 'Submit', class: 'btn btn-success mt-3' %>
   <%= link_to 'Back', questions_path, class: 'btn btn-secondary mt-3' %>
 <% end %>
 
 <script>
-  function myFunction() {
+  function addAnswer() {
     var number = document.getElementsByClassName("answer").length;
 
     var tableRow = "<tr><td class='answer'><input class=\"form-control\" type=\"text\"" +

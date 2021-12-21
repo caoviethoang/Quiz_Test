@@ -1,53 +1,57 @@
 <div class="page-wrapper">
   <div class="page-breadcrumb bg-white">
     <div class="row align-items-center">
-            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <%= link_to 'New Question', new_question_path, class: 'btn btn-primary' %>
-            </div>
-        </div>
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <%= link_to 'New Question', new_question_path, class: 'btn btn-primary' %>
+      </div>
     </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
-            <div class="white-box">
-                <%= form_with url: questions_path, method: 'GET', class: 'box-title' do |f| %>
-                  <label class='form-label'>Search questions</label>
-                  <input type="text" name='search' value="<%= params[:search] %>" >
-                  <button class="btn btn-success mt-0">Search</button>
-                <% end %>
-                <br />
-                <div class="table-responsive">
-                  <table class="table text-nowrap">
-                    <thead>
-                        <tr>
-                          <th class="border-top-0">#</th>
-                          <th class="border-top-0"><b>Category</b></th>
-                          <th class="border-top-0"><b>Title</b></th>
-                          <th class="border-top-0"><b>Type</b></th>
-                          <th class="border-top-0"><b>Functions</b></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                      <% @questions.each_with_index do |question, index| %>
-                        <tr>
-                          <th scope="row">
-                            <%= index %>
-                          </th>
-                          <td><%= Category.where(id: question.category_id).pluck(:title) %></td>
-                          <td><%= question.title %></td>
-                          <td><%= question.kind %></td>
-                          <td>
-                            <%= link_to 'Show', question_path(question), class: 'btn btn-info' %>
-                            <%= link_to 'Edit', edit_question_path(question), class: 'btn btn-warning' %>
-                            <%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' },
-                                                                                  class: 'btn btn-danger'%>
-                          </td>
-                        </tr>
-                      <% end %>
-                    </tbody>
-                  </table>
-                </div>
-             </div>
+          <div class="white-box">
+            <%= form_with url: questions_path, method: 'GET', class: 'box-title' do |f| %>
+              <label class='form-label'>Search questions</label>
+              <input type="text" name='search' value="<%= params[:search] %>" >
+              <button class="btn btn-success mt-0">Search</button>
+            <% end %>
+            <br />
+            <h4>Questions: 
+              <%= @questions.count%> /
+              <%= Question.count %>
+            </h4>
+            <br />
+            <div class="table-responsive">
+              <table class="table text-nowrap">
+                <thead>
+                  <tr>
+                    <th class="border-top-0">#</th>
+                    <th class="border-top-0"><b>Category</b></th>
+                    <th class="border-top-0"><b>Title</b></th>
+                    <th class="border-top-0"><b>Type</b></th>
+                    <th class="border-top-0"><b>Functions</b></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @questions.each_with_index do |question, index| %>
+                    <tr>
+                      <th scope="row">
+                        <%= question.id %>
+                      </th>
+                      <td><%= Category.where(id: question.category_id).pluck(:title) %></td>
+                      <td><%= question.title %></td>
+                      <td><%= question.kind %></td>
+                      <td>
+                        <%= link_to 'Show', question_path(question), class: 'btn btn-info' %>
+                        <%= link_to 'Edit', edit_question_path(question), class: 'btn btn-warning' %>
+                        <%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' },
+                                                                          class: 'btn btn-danger'%>
+                      </td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+            <%== pagy_bootstrap_nav(@pagy) %>
           </div>
         </div> 
       </div>         

@@ -1,4 +1,4 @@
-<%= form_with(model: question, local: true) do |q| %>
+<%= form_with(model: @question) do |q| %>
   <div class="mb-3">
     <b><%= q.label :title, 'Category', class: 'form-label' %></b>
     <%= collection_select(:question, :category_id, Category.all, :id, :title, {}, {:multiple => false}) %>
@@ -29,7 +29,7 @@
             <th></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="tbody">
           <tr id="add_ans" class="answer">
             <td><%= a.text_field :title, class: 'form-control' %></td>
             <td>
@@ -37,14 +37,14 @@
                 <%= a.check_box :iscorrected %> <br />
               </div>
             </td>
+            <td><button type="button" onclick="removeAns()" class="btn btn-danger">X</button></td>
           </tr>
         </tbody>
       <% end %>
     </table>
   </div>
-
   <div class="field mt-2">
-    <button type="button" onclick="myFunction()" class="js-btn-add">Add anwser</button>
+    <button type="button" onclick="myFunction()">Add anwser</button>
   </div>
   <%= q.submit 'Submit', class: 'btn btn-success mt-3' %>
   <%= link_to 'Back', questions_path, class: 'btn btn-secondary mt-3' %>
@@ -60,10 +60,17 @@
     "<input name=\"question[answers_attributes][" + number + "][iscorrected]\" type=\"hidden\" value=\"0\">" +
     "<input type=\"checkbox\" value=\"1\" name=\"question[answers_attributes][" + number + "][iscorrected]\"" +
     "id=\"question_answers_attributes_" + number + "_iscorrected\"> <br>" +
-    "</div></td></tr>";
+    "</div></td><td><button type=\"button\" onclick=\"removeAns()\" class=\"btn btn-danger\">X</button></td></tr>";
     
-    $("#mytb tbody").append(tableRow);
+    $("#mytb").append(tableRow);
   };
+  function removeAns(r) {
+    var nodes = Array.prototype.slice.call( document.getElementById('tbody').children );
+    liRef = document.getElementsByClassName('answer');
+    index = nodes.indexOf(liRef);
+    console.log(index);
+    $("#mytb").remove(nodes.indexOf(liRef));
+  }
 </script>
 
 <style type="text/css">

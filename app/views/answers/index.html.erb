@@ -13,6 +13,11 @@
             <button class="btn btn-success mt-0">Search</button>
           <% end %>
           <br />
+          <h4>Answers: 
+            <%= @answers.count%> /
+            <%= Answer.count %>
+          </h4>
+          <br />
           <div class="table-responsive">
             <table class="table text-nowrap">
               <thead>
@@ -28,7 +33,7 @@
               <tbody>
                 <% @answers.each_with_index do |anwser, index| %>
                   <tr>
-                    <th scope="row"><%= index %></th>
+                    <th scope="row"><%= anwser.id %></th>
                     <td><%= Category.where(id: anwser.question.category_id).pluck(:title) %></td>
                     <td><%= Question.where(id: anwser.question_id).pluck(:title) %></td>
                     <td><%= anwser.title %></td>
@@ -42,6 +47,7 @@
               </tbody>
             </table>
           </div>
+          <%== pagy_bootstrap_nav(@pagy) %>
         </div>
       </div>
     </div> 

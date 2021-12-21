@@ -6,7 +6,7 @@ class AnswersController < ApplicationController
     if params[:search].present?
       @answers = Answer.where("title LIKE ?", "%#{params[:search]}%")
     else
-      @answers = Answer.all
+      @pagy, @answers = pagy(Answer.all)
     end
   end
 
@@ -51,7 +51,7 @@ class AnswersController < ApplicationController
   end
 
   def set_answer
-    @answer = Answer.find_by(id: params[:id])
+    @answer = Answer.find(params[:id])
     if @answer.blank?
       render file: 'public/404.html'
     end

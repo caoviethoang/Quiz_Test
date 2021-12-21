@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
     if params[:search].present?
       @questions = Question.where("title LIKE ?", "%#{params[:search]}%")
     else
-      @questions = Question.all
+      @pagy, @questions = pagy(Question.all)
     end
   end
 
@@ -32,7 +32,7 @@ class QuestionsController < ApplicationController
 
   def update
     if @question.update(question_params)
-      redirect_to question_path
+      redirect_to questions_path
     else
       flash[:danger] = "Update failed"
       redirect_to 'edit'
@@ -52,7 +52,7 @@ class QuestionsController < ApplicationController
   end
 
   def set_question
-    @question = Question.find_by(id: params[:id])
+    @question = Question.find(params[:id])
     if @question.blank?
       render file: 'public/404.html'
     end

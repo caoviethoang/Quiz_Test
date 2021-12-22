@@ -1,5 +1,6 @@
 <tr>
   <th scope="row">
+<<<<<<< HEAD
     <%= category.id %>
   </th>
   <td><%= category.title %></td>
@@ -8,5 +9,15 @@
   <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-warning' %>
   <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' },
                                                   class: 'btn btn-danger'%>
+=======
+    <%= category.id%>
+  </th>
+  <td><%= category.title %></td>
+  <td>
+    <%= link_to 'Show', category_path(category), class: 'btn btn-info' %>
+    <%= link_to 'Edit', edit_category_path(category), class: 'btn btn-warning' %>
+    <%= link_to 'Delete', category, method: :delete, data: { confirm: 'Are you sure?' },
+                                                    class: 'btn btn-danger'%>
+>>>>>>> f5f5ed95e4f47eab881e020190bcc19cc699fd34
   </td>
 </tr>

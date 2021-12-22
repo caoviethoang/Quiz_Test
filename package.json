@@ -11,11 +11,13 @@
     "jquery": "^3.6.0",
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0",
+    "ua-compatible": "^0.0.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
   },
   "version": "0.1.0",
   "devDependencies": {
+    "gulp": "^4.0.2",
     "webpack-dev-server": "^3"
   }
 }

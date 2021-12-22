@@ -1,0 +1,4 @@
+<%= search_form_for @q, class: "box-title" do |f| %>
+  <%= f.search_field :title_cont, placeholder: "Search questions..." %>
+  <%= f.submit "Search", class: "btn btn-success" %>
+<% end %>

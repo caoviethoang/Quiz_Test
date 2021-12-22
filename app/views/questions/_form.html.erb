@@ -30,16 +30,17 @@
           </tr>
         </thead>
         <tbody id="tbody">
-          <tr id="add_ans" class="answer">
+          <tr id="add_answer" class="answer">
             <td><%= a.text_field :title, class: 'form-control' %></td>
             <td>
               <div class="form-check mt-3 ml-4">
                 <%= a.check_box :iscorrected %> <br />
               </div>
-              <%= a.hidden_field :_destroy %>
             </td>
-            <td><button type="button" onclick="removeAns()" class="btn btn-danger">X</button></td>
-            
+            <td>
+              <%= a.hidden_field :_destroy %>
+              <input type="button" class="btn btn-danger" onclick="removeRow(this)" value="X">
+            </td>
           </tr>
         </tbody>
       <% end %>
@@ -54,25 +55,26 @@
 
 <script>
   function addAnswer() {
-    var number = document.getElementsByClassName("answer").length;
+    var number = Date.now();
 
-    var tableRow = "<tr><td class='answer'><input class=\"form-control\" type=\"text\"" +
+    var tableRow = "<tr><td><input class=\"form-control\" type=\"text\"" +
     "name=\"question[answers_attributes][" + number + "][title]\" id=\"question_answers_attributes_" + number + "_title\"></td><td>" +
     "<div class=\"form-check mt-3 ml-4\">" +
     "<input name=\"question[answers_attributes][" + number + "][iscorrected]\" type=\"hidden\" value=\"0\">" +
     "<input type=\"checkbox\" value=\"1\" name=\"question[answers_attributes][" + number + "][iscorrected]\"" +
     "id=\"question_answers_attributes_" + number + "_iscorrected\"> <br>" +
-    "</div></td><td><button type=\"button\" onclick=\"removeAns()\" class=\"btn btn-danger\">X</button></td></tr>";
+    "</div></td><td><input type=\"button\" class=\"btn btn-danger\" onclick='removeRow(this)' value=\"X\"></td></tr>";
     
     $("#mytb").append(tableRow);
   };
-  function removeAns(r) {
-    var nodes = Array.prototype.slice.call( document.getElementById('tbody').children );
-    liRef = document.getElementsByClassName('answer');
-    index = nodes.indexOf(liRef);
-    console.log(index);
-    $("#mytb").remove(nodes.indexOf(liRef));
-  }
+
+  function removeRow(row) {
+    var tr = row.parentElement.parentElement;
+    tr.style.display = 'none';
+
+    var isDeleteElement = tr.querySelector("input[name*='destroy']");
+    isDeleteElement.setAttribute("value", true);
+  };
 </script>
 
 <style type="text/css">

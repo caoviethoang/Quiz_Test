@@ -1,0 +1,11 @@
+<tr>
+  <th scope="row"><%= answer.id %></th>
+  <td><%= Category.where(id: answer.question.category_id).pluck(:title) %></td>
+  <td><%= Question.where(id: answer.question_id).pluck(:title) %></td>
+  <td><%= answer.title %></td>
+  <td><%= answer.iscorrected %></td>
+  <td>
+    <%= link_to 'Delete', answer, method: :delete, data: { confirm: 'Are you sure?' },
+                                                      class: 'btn btn-danger'%>
+  </td>
+</tr>

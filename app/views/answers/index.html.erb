@@ -7,11 +7,7 @@
     <div class="row">
       <div class="col-sm-12">
         <div class="white-box">
-          <%= form_with url: answers_path, method: 'GET', class: 'box-title' do |f| %>
-            <label class='form-label'>Search answers</label>
-            <input type="text" name='search' value="<%= params[:search] %>" >
-            <button class="btn btn-success mt-0">Search</button>
-          <% end %>
+          <%= render 'search' %>
           <br />
           <h4>Answers: 
             <%= @answers.count%> /
@@ -31,19 +27,7 @@
                 </tr>
               </thead>
               <tbody>
-                <% @answers.each_with_index do |anwser, index| %>
-                  <tr>
-                    <th scope="row"><%= anwser.id %></th>
-                    <td><%= Category.where(id: anwser.question.category_id).pluck(:title) %></td>
-                    <td><%= Question.where(id: anwser.question_id).pluck(:title) %></td>
-                    <td><%= anwser.title %></td>
-                    <td><%= anwser.iscorrected %></td>
-                    <td>
-                      <%= link_to 'Delete', anwser, method: :delete, data: { confirm: 'Are you sure?' },
-                                                                      class: 'btn btn-danger'%>
-                    </td>
-                  </tr>
-                <% end %>
+                <%= render @answers %>
               </tbody>
             </table>
           </div>

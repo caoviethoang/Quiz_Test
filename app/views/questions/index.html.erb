@@ -2,18 +2,14 @@
   <div class="page-breadcrumb bg-white">
     <div class="row align-items-center">
       <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-        <%= link_to 'New Question', new_question_path, class: 'btn btn-primary' %>
+        <%= link_to "New Question", new_question_path, class: "btn btn-primary" %>
       </div>
     </div>
     <div class="container-fluid">
       <div class="row">
         <div class="col-sm-12">
           <div class="white-box">
-            <%= form_with url: questions_path, method: 'GET', class: 'box-title' do |f| %>
-              <label class='form-label'>Search questions</label>
-              <input type="text" name='search' value="<%= params[:search] %>" >
-              <button class="btn btn-success mt-0">Search</button>
-            <% end %>
+            <%= render 'search' %>
             <br />
             <h4>Questions: 
               <%= @questions.count%> /
@@ -32,7 +28,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <%= render @questions%>
+                  <%= render @questions %>
                 </tbody>
               </table>
             </div>

@@ -3,11 +3,8 @@ class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
 
   def index
-    if params[:search].present?
-      @answers = Answer.where("title LIKE ?", "%#{params[:search]}%")
-    else
-      @pagy, @answers = pagy(Answer.all)
-    end
+    @q = Answer.ransack(params[:q])
+    @pagy, @answers = pagy(@q.result(distinct: true))
   end
 
   def new
@@ -52,8 +49,5 @@ class AnswersController < ApplicationController
 
   def set_answer
     @answer = Answer.find(params[:id])
-    if @answer.blank?
-      render file: 'public/404.html'
-    end
   end
 end

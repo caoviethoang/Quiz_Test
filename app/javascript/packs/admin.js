@@ -14,8 +14,8 @@ require("sidebarmenu")
 require("waves")
 
 // import the bootstrap javascript module
-import "bootstrap"
-
+import "bootstrap/dist/js/bootstrap"
+import "bootstrap/dist/css/bootstrap"
 // import the application.scss we created for the bootstrap CSS (if you are not using assets stylesheet)
 import "../stylesheets/application"
-import "css/site.scss"
+import "../css/site"

@@ -36,6 +36,8 @@ gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 gem 'jquery-rails', '~> 4.4'
 gem 'pagy'
 gem 'ransack'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
+gem 'select2-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

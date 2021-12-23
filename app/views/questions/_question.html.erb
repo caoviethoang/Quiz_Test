@@ -2,7 +2,6 @@
   <th scope="row">
     <%= question.id %>
   </th>
-  <td><%= Category.where(id: question.category_id).pluck(:title) %></td>
   <td><%= question.title %></td>
   <td><%= question.kind %></td>
   <td>

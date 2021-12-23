@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <div class="white-box">
           <h2></b>Question information</b></h2>
-          <p>Category: <%= Category.where(id: @question.category_id).pluck(:title) %></p>
+          <p>Category: <%= @category %></p>
           <p>Kind: <%= @question.kind %></p>
           <p>Title: <%= @question.title %></p>
           <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-danger' %>

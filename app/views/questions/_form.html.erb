@@ -1,7 +1,7 @@
 <%= form_with(model: @question) do |q| %>
   <div class="mb-3">
     <b><%= q.label :title, 'Category', class: 'form-label' %></b>
-    <%= collection_select(:question, :category_id, Category.all, :id, :title, {}, {:multiple => false}) %>
+    <%= collection_select(:question, :category_id, @categories, :id, :title, {}, {:multiple => false}) %>
   </div>
   <div class="mb-3">
     <b><%= q.label :title, 'Question', class: 'form-label' %></b>
@@ -39,7 +39,7 @@
             </td>
             <td>
               <%= a.hidden_field :_destroy %>
-              <input type="button" class="btn btn-danger" onclick="removeRow(this)" value="X">
+              <input type="button" class="btn btn-danger remove-answer" value="X">
             </td>
           </tr>
         </tbody>
@@ -55,26 +55,23 @@
 
 <script>
   function addAnswer() {
-    var number = Date.now();
+    var timeStamp = Date.now();
 
     var tableRow = "<tr><td><input class=\"form-control\" type=\"text\"" +
-    "name=\"question[answers_attributes][" + number + "][title]\" id=\"question_answers_attributes_" + number + "_title\"></td><td>" +
+    "name=\"question[answers_attributes][" + timeStamp + "][title]\" id=\"question_answers_attributes_" + timeStamp + "_title\"></td><td>" +
     "<div class=\"form-check mt-3 ml-4\">" +
-    "<input name=\"question[answers_attributes][" + number + "][iscorrected]\" type=\"hidden\" value=\"0\">" +
-    "<input type=\"checkbox\" value=\"1\" name=\"question[answers_attributes][" + number + "][iscorrected]\"" +
-    "id=\"question_answers_attributes_" + number + "_iscorrected\"> <br>" +
-    "</div></td><td><input type=\"button\" class=\"btn btn-danger\" onclick='removeRow(this)' value=\"X\"></td></tr>";
+    "<input name=\"question[answers_attributes][" + timeStamp + "][iscorrected]\" type=\"hidden\" value=\"0\">" +
+    "<input type=\"checkbox\" value=\"1\" name=\"question[answers_attributes][" + timeStamp + "][iscorrected]\"" +
+    "id=\"question_answers_attributes_" + timeStamp + "_iscorrected\"> <br>" +
+    "</div></td><td><input type=\"button\" class=\"btn btn-danger remove-answer\" value=\"X\"></td></tr>";
     
     $("#mytb").append(tableRow);
   };
 
-  function removeRow(row) {
-    var tr = row.parentElement.parentElement;
-    tr.style.display = 'none';
-
-    var isDeleteElement = tr.querySelector("input[name*='destroy']");
-    isDeleteElement.setAttribute("value", true);
-  };
+  $('.answers-container').on('click', '.remove-answer', function() {
+    $(this).closest('tr').hide();
+    $(this).prev("input[name*='destroy']").attr("value",true);;
+  });
 </script>
 
 <style type="text/css">

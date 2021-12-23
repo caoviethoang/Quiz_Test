@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
 
   def new
     @question = Question.new
+    @categories = Category.all
     @question.answers.build
   end
 
@@ -22,9 +23,11 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @category = Category.where(id: @question.category_id).pluck(:title)
   end
 
   def edit
+    @categories = Category.all
   end
 
   def update

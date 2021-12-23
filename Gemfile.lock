@@ -102,6 +102,8 @@ GEM
     erubi (1.10.0)
     execjs (2.8.1)
     ffi (1.15.4)
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
     i18n (1.8.11)
@@ -193,6 +195,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    select2-rails (4.0.13)
     selenium-webdriver (4.1.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
@@ -250,6 +253,7 @@ DEPENDENCIES
   devise-bootstrap-views (~> 1.1)
   devise-bootstrap5
   devise-i18n
+  font-awesome-rails (~> 4.7, >= 4.7.0.8)
   jbuilder (~> 2.7)
   jquery-rails (~> 4.4)
   listen (~> 3.3)
@@ -259,6 +263,7 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.1)
   ransack
   sass-rails (>= 6)
+  select2-rails
   selenium-webdriver
   spring
   sqlite3 (~> 1.4)

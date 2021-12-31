@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @category = Category.where(id: @question.category_id).pluck(:title)
+    @category = @question.category.title
   end
 
   def edit
@@ -34,13 +34,12 @@ class QuestionsController < ApplicationController
     if @question.update(question_params)
       redirect_to questions_path
     else
-      flash[:danger] = "Update failed"
+      flash[:danger] = 'Update failed'
       redirect_to 'edit'
     end
   end
 
   def destroy
-    @question = Question.find(params[:id])
     @question.destroy
     redirect_to questions_path
   end

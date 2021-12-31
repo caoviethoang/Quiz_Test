@@ -1,20 +1,20 @@
 <%= form_with(model: @question) do |q| %>
   <div class="mb-3">
-    <b><%= q.label :title, 'Category', class: 'form-label' %></b>
+    <b><%= q.label :title, "Category", class: "form-label" %></b>
     <%= collection_select(:question, :category_id, @categories, :id, :title, {}, {:multiple => false}) %>
   </div>
   <div class="mb-3">
-    <b><%= q.label :title, 'Question', class: 'form-label' %></b>
-    <%= q.text_field :title, class: 'form-control' %>
+    <b><%= q.label :title, "Question", class: "form-label" %></b>
+    <%= q.text_field :title, class: "form-control" %>
   </div>
   <div class="mb-3">
     <div class="form-check">
-      <%= q.radio_button :kind, 'single', :checked => true %> 
-      <%= label :kind_single, 'Single choice' %>
+      <%= q.radio_button :kind, "single", :checked => true %> 
+      <%= label :kind_single, "Single choice" %>
     </div>
     <div class="form-check">
-      <%= q.radio_button :kind, 'multi' %>
-      <%= label :kind_multi, 'Multiple choices' %>
+      <%= q.radio_button :kind, "multi" %>
+      <%= label :kind_multi, "Multiple choices" %>
     </div>
   </div>
   <div class="field answers-container">
@@ -23,7 +23,7 @@
         <thead>
           <tr>
             <th>
-              <%= a.label :title, 'Answers', class: 'form-label' %>
+              <%= a.label :title, "Answers", class: "form-label" %>
             </th>
             <th>Correct ?</th>
             <th></th>
@@ -31,7 +31,7 @@
         </thead>
         <tbody id="tbody">
           <tr id="add_answer" class="answer">
-            <td><%= a.text_field :title, class: 'form-control' %></td>
+            <td><%= a.text_field :title, class: "form-control" %></td>
             <td>
               <div class="form-check mt-3 ml-4">
                 <%= a.check_box :iscorrected %> <br />
@@ -49,8 +49,8 @@
   <div class="field mt-2">
     <button type="button" onclick="addAnswer()">Add anwser</button>
   </div>
-  <%= q.submit 'Submit', class: 'btn btn-success mt-3' %>
-  <%= link_to 'Back', questions_path, class: 'btn btn-secondary mt-3' %>
+  <%= q.submit "Submit", class: "btn btn-success mt-3" %>
+  <%= link_to "Back", questions_path, class: "btn btn-secondary mt-3" %>
 <% end %>
 
 <script>

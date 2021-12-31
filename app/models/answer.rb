@@ -1,5 +1,6 @@
 class Answer < ApplicationRecord
-  validates :title, presence: true, length: { maximum: 200 }
+  validates :title, length: { maximum: 200 }
 
   belongs_to :question
+  belongs_to :result, optional: true
 end

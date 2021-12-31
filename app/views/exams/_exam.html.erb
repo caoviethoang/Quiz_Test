@@ -1,0 +1,10 @@
+<tr>
+  <th scope="row">
+    <%= exam.id%>
+  </th>
+  <td>
+    <%= link_to 'Show', exam_path(exam), class: 'btn btn-info' %>
+    <%= link_to 'Delete', exam, method: :delete, data: { confirm: 'Are you sure?' },
+                                                    class: 'btn btn-danger'%>
+  </td>
+</tr>

@@ -16,6 +16,10 @@
       <%= q.radio_button :kind, 'multi' %>
       <%= label :kind_multi, 'Multiple choices' %>
     </div>
+    <div class="form-check">
+      <%= q.radio_button :kind, 'text' %>
+      <%= label :kind_multi, 'Text Field' %>
+    </div>
   </div>
   <div class="field answers-container">
     <table class="table table-borderless" id="mytb">
@@ -70,7 +74,7 @@
 
   $('.answers-container').on('click', '.remove-answer', function() {
     $(this).closest('tr').hide();
-    $(this).prev("input[name*='destroy']").attr("value",true);;
+    $(this).prev("input[name*='destroy']").attr("value",true);
   });
 </script>
 

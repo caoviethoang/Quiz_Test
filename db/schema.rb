@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_17_024638) do
+ActiveRecord::Schema.define(version: 2021_12_30_020757) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2021_12_17_024638) do
     t.integer "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "textfield"
     t.index ["question_id", "created_at"], name: "index_answers_on_question_id_and_created_at"
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
@@ -38,6 +39,12 @@ ActiveRecord::Schema.define(version: 2021_12_17_024638) do
     t.string "title"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "exams", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "name"
   end
 
   create_table "questions", force: :cascade do |t|
@@ -50,6 +57,18 @@ ActiveRecord::Schema.define(version: 2021_12_17_024638) do
     t.index ["category_id"], name: "index_questions_on_category_id"
   end
 
+  create_table "results", force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "anwser_id"
+    t.integer "exam_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["anwser_id", "created_at"], name: "index_results_on_anwser_id_and_created_at"
+    t.index ["exam_id"], name: "index_results_on_exam_id"
+    t.index ["question_id", "created_at"], name: "index_results_on_question_id_and_created_at"
+  end
+
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "categories"
+  add_foreign_key "results", "exams"
 end

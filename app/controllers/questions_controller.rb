@@ -14,6 +14,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
+    @categories = Category.all
     @question = Question.new(question_params)
     if @question.save
       redirect_to questions_path
@@ -48,7 +49,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :kind, :category_id, answers_attributes: [:id, :title, :iscorrected, :_destroy])
+    params.require(:question).permit(:title, :kind, :category_id, answers_attributes: [:id, :title, :iscorrected, :textfield, :_destroy])
   end
 
   def set_question

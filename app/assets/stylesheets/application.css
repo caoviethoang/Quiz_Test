@@ -12,5 +12,227 @@
  *
  *= require_tree .
  *= require_self
- *= require select2
  */
+ @import 'hartist-plugin-tooltip';
+ @import 'chartist.min';
+ @import 'style.min';
+ @import 'fontawesome-all.min';
+ @import "font-awesome";
+ @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+ * {
+     margin: 0;
+     padding: 0;
+     box-sizing: border-box
+ }
+ 
+ body {
+     background-color: #fff
+ }
+
+ .title{
+     font-size: 80px;
+     font-weight: 400;
+     margin-bottom: 20px;
+ }
+ .sidebar{
+     position: fixed;
+     right: 50px;
+     border: 1px solid rgb(172, 167, 167);
+     padding:15px;
+     min-width: 350px;
+ }
+ .container {
+   
+     justify-content: center;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     background-color: rgba(236, 236, 236, 0.911);
+     color: rgb(7, 7, 7);
+     border-radius: 5px;
+     padding: 10px;
+     font-family:'Times New Roman', Times, serif;
+ }
+
+ .sidebar .timer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+     width: 200px;
+     height: 50px;
+     border-color:#cce5ff;
+     border-radius: 5px;
+     padding: 0 8px;
+     margin-left:50px;
+ }
+ 
+ .sidebar .timer .time-text{
+     font-weight: 500;
+     font-size: 18px;
+     user-select: none;
+     margin-right: 50px;
+ }
+ 
+ .sidebar .timer .time-minute{
+     font-size: 23px;
+     font-weight: 600;
+     height: 30px;
+     width: 45px;
+     color: rgb(46, 43, 43);
+     text-align: center;
+     line-height: 30px;
+     border-radius: 5px;
+ }
+ 
+.question-num{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 5px;
+}
+
+.question-circle{
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: #bcebf0;
+}
+ 
+ .container>p {
+     font-size: 32px
+ }
+ 
+ .question {
+     width: 70%
+ }
+ 
+ .options {
+     position: relative;
+     padding-left: 30px;
+     font-size: 18px;
+ }
+ .options ul {
+     list-style-type: lower-alpha;
+ }
+ 
+ #options label {
+     display: block;
+     margin-bottom: 15px;
+     font-size: 17px;
+     cursor: pointer
+ }
+
+
+ @media only screen and (max-width:768px) {
+     .question {
+         width: 100%;
+         word-spacing: 2px
+     }
+     .sidebar{
+         position: relative;
+     }
+ }
+
+ .paginate{
+     display: flex;
+     align-items: center;
+     text-align: center;
+     justify-content: center;
+ }
+ .submit-result{
+    justify-content: center;
+     align-items: center;
+     text-align: center;
+     font-size: 30px;
+     font-weight: 500;
+ 
+ }
+ .btn-success{
+    justify-content: center;
+     padding: 5px 30px;
+     font-size: 18px;
+     font-weight: 500;
+     background-color: #1ac91a;
+     color: #fff;
+ }
+
+ .table-pagination {
+  display: flex;
+  justify-content: flex-end;
+ }
+    
+ .container-answer {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default checkbox */
+  .container-answer input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  /* Create a custom checkbox */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: rgb(250, 250, 250);
+    border: 1px solid rgb(129, 127, 127);
+  }
+  
+  .container-answer:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+  .container-answer input:checked ~ .checkmark {
+    background-color: #2196F3;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .container-answer input:checked ~ .checkmark:after {
+    display: block;
+  }
+  
+  .container-answer .checkmark:after {
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+  }
+
+  #text-answer{
+      background-color: rgba(236, 236, 236, 0.911);
+      outline: none;
+      border: none;
+      border-bottom: 1px solid rgba(156, 153, 153, 0.911);
+      height: 25px;
+  }

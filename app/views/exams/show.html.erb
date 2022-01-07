@@ -1,102 +1,33 @@
-<div class="row">
-  <div class="col-12 col-md-9">
-    <div class="container">
-      <div class="title">TEST</div>
-      <div class="question" id="result">
-        <% @exam.results.each_with_index do |result, index| %>
-            <div class="py-2 h4"><b>Question <%= index+1 %>: <%= result.question.title %></b></div>
-              <div class="options" id="options">
-                <% result.question.answers.each do |a| %>
-                    <label class="container-answer"><%= a.title %>
-                      <input type="checkbox">
-                      <span class="checkmark"></span>
-                    </label>
-                <% end %>
-                <div class="input-group mb-1">
-                Other: <input id="text-answer" type="text" class="form-control" aria-label="other" aria-describedby="basic-addon1">
-              </div>
-            </div>
-        <% end %>
-        <br/><br/>
-        <div class="paginate">
-          <%= will_paginate @questions, renderer: BootstrapPagination::Rails %>
+<div class="content" id="content-question">
+  <div class="container">
+    <div class="title">Exam <%= @exam.id %></div>
+    <div class="question" id="result">
+      <% @exam.results.each_with_index do| result, index |%>
+        <div class="py-2 h4">
+          Question <%= index+1 %>: <%= result.question.title %>
         </div>
-        <div class="submit-result">
-          <input type="submit" value="SUBMIT" form="result" class="btn btn-success">
+        <div class="options" id="options">
+          <% result.question.answers.each do |answer_list| %>
+            <% answer_title = answer_list.title %>
+            <label class="user-result">
+              <% if result.answer == answer_list %>
+                <div class="user-answer" style="color: green;">
+                    <input type="checkbox" checked="checked"><%= answer_title %>
+                </div>
+              <% elsif result.answer == answer_list.iscorrected or answer_list.iscorrected %>
+                <div class="user-answer" style="color: green;">
+                  <input type="checkbox"><%= answer_title %>
+                </div>
+              <% else %>
+                <div class="user-answer"><input type="checkbox"><%= answer_title %></div>
+              <% end %>
+            </label>
+          <% end %>
+          <div class="input-group mb-1">
+            Other: <b style="color: blue; padding: 0 5px;"><%= result.textfield %></b>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-6 col-md-3">
-    <div class="sidebar" >
-      <div class="timer">
-        <div class="time-text">Time Left: </div>&nbsp
-        <div class="time-minute" id="countdown"></div>
-      </div>
-      <br/>
-      <div class="right-side">
-        <div class="question-num">
-          <div class="question-circle">1</div>
-          <div class="question-circle">2</div>
-          <div class="question-circle">3</div>
-          <div class="question-circle">4</div>
-          <div class="question-circle">5</div>
-        </div class="question-num">
-        <div class="question-num">
-          <div class="question-circle">6</div>
-          <div class="question-circle">7</div>
-          <div class="question-circle">8</div>
-          <div class="question-circle">9</div>
-          <div class="question-circle">10</div>
-        </div class="question-num">
-        <div class="question-num">
-          <div class="question-circle">11</div>
-          <div class="question-circle">21</div>
-          <div class="question-circle">13</div>
-          <div class="question-circle">14</div>
-          <div class="question-circle">15</div>
-        </div class="question-num">
-        <div class="question-num">
-          <div class="question-circle">16</div>
-          <div class="question-circle">17</div>
-          <div class="question-circle">18</div>
-          <div class="question-circle">19</div>
-          <div class="question-circle">20</div>
-        </div class="question-num">
-        <div class="question-num">
-          <div class="question-circle">21</div>
-          <div class="question-circle">22</div>
-          <div class="question-circle">23</div>
-          <div class="question-circle">24</div>
-          <div class="question-circle">25</div>
-        </div class="question-num">
-        <div class="question-num">
-          <div class="question-circle">26</div>
-          <div class="question-circle">27</div>
-          <div class="question-circle">28</div>
-          <div class="question-circle">29</div>
-          <div class="question-circle">30</div>
-        </div class="question-num">
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
-
-<script>
-  const startingMenutes = 30;
-  let time = startingMenutes * 60;
-
-  const countDownElement = document.getElementById('countdown');
-
-  setInterval(updateCountdown, 1000);
-
-  function updateCountdown(){
-    const minutes = Math.floor(time / 60);
-    let seconds = time % 60;
-
-    seconds = seconds < 10 ? '0' +seconds : seconds;
-
-    countDownElement.innerHTML = `${minutes}:${seconds}`;
-    time--;
-  }
-</script>

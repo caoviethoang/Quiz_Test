@@ -12,5 +12,5 @@ import "bootstrap/dist/js/bootstrap"
 import "bootstrap/dist/css/bootstrap"
 // import the application.scss we created for the bootstrap CSS (if you are not using assets stylesheet)
 import "../stylesheets/application"
-import 'select2/dist/js/select2'
-import 'select2/dist/css/select2.css'
+import "select2/dist/js/select2"
+import "select2/dist/css/select2.css"

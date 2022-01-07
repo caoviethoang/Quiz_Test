@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :results
   resources :exams
+  get 'thanks', to: 'exams#thanks'
   resources :questions
   resources :answers
   resources :categories

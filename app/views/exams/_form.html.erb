@@ -1,37 +1,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-7">
-      <%= form_with model: @exam do |e| %>
-        <%= e.submit 'Add random 30 questions', class: 'btn btn-info mt-0 mb-3' %>
-        <div class="mb-3">
-          <%= e.label :name, 'Question', class: 'form-label' %>
-          <%= e.text_field :name, class: 'form-control' %>
-        </div>
-        <div class="field questions-container">
-          <table class="table table-borderless">
-            </tbody>
-              <tr>
-                <td>hhhgh</td>
-                <td><input type="button" class="btn btn-danger remove-question" value="X"></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <%= e.submit 'Submit', class: 'btn btn-success' %>
-        <%= link_to 'Back', exams_path, class: 'btn btn-secondary' %>
-      <% end %>
+        <%= link_to  'Add random 30 questions',new_exam_path, class: 'btn btn-info mt-0 mb-3' %>
     </div>
-    <div class="col-2 mt-3">
-      <input type="button" class="btn btn-info mt-5" value="Add">
-    </div>
-    <div class="col-3 mt-3">
-    </div>
+
   </div>
 </div>
-
-<script>
-  $('.questions-container').on('click', '.remove-question', function() {
-    $(this).closest('tr').hide();
-    $(this).prev("input[name*='destroy']").attr("value",true);
-  });
-</script>

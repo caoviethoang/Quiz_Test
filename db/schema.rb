@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_07_073235) do
+ActiveRecord::Schema.define(version: 2022_01_10_095128) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2022_01_07_073235) do
 
   create_table "answers", force: :cascade do |t|
     t.text "title"
-    t.boolean "iscorrected"
+    t.boolean "corrected"
     t.integer "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 2022_01_07_073235) do
     t.integer "exam_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "textfield"
+    t.text "text_answer"
     t.index ["answer_id", "created_at"], name: "index_results_on_answer_id_and_created_at"
     t.index ["exam_id"], name: "index_results_on_exam_id"
     t.index ["question_id", "created_at"], name: "index_results_on_question_id_and_created_at"

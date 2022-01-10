@@ -11,7 +11,7 @@
             <% answer_title = answer.title %>
             <label class="user-result">
               <% if result.answer == answer %>
-                <% if result.answer.iscorrected %>
+                <% if result.answer.corrected %>
                   <div class="user-answer" style="color: green;">
                     <input type="checkbox" checked="checked"><%= answer_title %>
                   </div>
@@ -20,7 +20,7 @@
                     <input type="checkbox" checked="checked"><%= answer_title %>
                   </div>
                 <% end %>
-              <% elsif answer.iscorrected %>
+              <% elsif answer.corrected %>
                 <div class="user-answer" style="color: green;">
                   <input type="checkbox"><%= answer_title %>
                 </div>
@@ -30,7 +30,7 @@
             </label>
           <% end %>
           <div class="input-group mb-1">
-            Other: <b style="color: blue; padding: 0 5px;"><%= result.textfield %></b>
+            Other: <b style="color: blue; padding: 0 5px;"><%= result.text_answer %></b>
           </div>
         </div>
       <% end %>

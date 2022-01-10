@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_14_080745) do
+ActiveRecord::Schema.define(version: 2022_01_10_095128) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,10 +26,11 @@ ActiveRecord::Schema.define(version: 2021_12_14_080745) do
 
   create_table "answers", force: :cascade do |t|
     t.text "title"
-    t.boolean "iscorrected"
+    t.boolean "corrected"
     t.integer "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.text "textfield"
     t.index ["question_id", "created_at"], name: "index_answers_on_question_id_and_created_at"
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
@@ -40,9 +41,14 @@ ActiveRecord::Schema.define(version: 2021_12_14_080745) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "exams", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "questions", force: :cascade do |t|
     t.text "title"
-    t.string "type"
+    t.string "kind"
     t.integer "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -50,6 +56,19 @@ ActiveRecord::Schema.define(version: 2021_12_14_080745) do
     t.index ["category_id"], name: "index_questions_on_category_id"
   end
 
+  create_table "results", force: :cascade do |t|
+    t.integer "question_id"
+    t.integer "answer_id"
+    t.integer "exam_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.text "text_answer"
+    t.index ["answer_id", "created_at"], name: "index_results_on_answer_id_and_created_at"
+    t.index ["exam_id"], name: "index_results_on_exam_id"
+    t.index ["question_id", "created_at"], name: "index_results_on_question_id_and_created_at"
+  end
+
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "categories"
+  add_foreign_key "results", "exams"
 end

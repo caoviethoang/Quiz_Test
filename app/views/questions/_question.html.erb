@@ -1,0 +1,13 @@
+<tr>
+  <th scope="row">
+    <%= question.id %>
+  </th>
+  <td><%= question.title %></td>
+  <td><%= question.kind %></td>
+  <td>
+    <%= link_to 'Show', question_path(question), class: 'btn btn-info' %>
+    <%= link_to 'Edit', edit_question_path(question), class: 'btn btn-warning' %>
+    <%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' },
+                                                          class: 'btn btn-danger'%>
+  </td>
+</tr>

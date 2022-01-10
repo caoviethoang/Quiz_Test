@@ -1,2 +1,39 @@
-<h1>Exams#show</h1>
-<p>Find me in app/views/exams/show.html.erb</p>
+<div class="content" id="content-question">
+  <div class="container">
+    <div class="title">Exam <%= @exam.id %></div>
+    <div class="question" id="result">
+      <% @exam.results.each_with_index do| result, index |%>
+        <div class="py-2 h4">
+          Question <%= index+1 %>: <%= result.question.title %>
+        </div>
+        <div class="options" id="options">
+          <% result.question.answers.each do |answer| %>
+            <% answer_title = answer.title %>
+            <label class="user-result">
+              <% if result.answer == answer %>
+                <% if result.answer.corrected %>
+                  <div class="user-answer" style="color: green;">
+                    <input type="checkbox" checked="checked"><%= answer_title %>
+                  </div>
+                <% else %>
+                  <div class="user-answer">
+                    <input type="checkbox" checked="checked"><%= answer_title %>
+                  </div>
+                <% end %>
+              <% elsif answer.corrected %>
+                <div class="user-answer" style="color: green;">
+                  <input type="checkbox"><%= answer_title %>
+                </div>
+              <% else %>
+                <div class="user-answer"><input type="checkbox"><%= answer_title %></div>
+              <% end %>
+            </label>
+          <% end %>
+          <div class="input-group mb-1">
+            Other: <b style="color: blue; padding: 0 5px;"><%= result.text_answer %></b>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

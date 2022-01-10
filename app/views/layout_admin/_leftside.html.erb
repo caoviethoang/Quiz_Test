@@ -14,13 +14,13 @@
             <% end %>
           </li>
           <li class="sidebar-item">              
-            <%= link_to answers_path, class: 'sidebar-link waves-effect waves-dark sidebar-link' do %>
-              <i class="fa fa-table" aria-hidden="true"></i> Answers
+            <%= link_to exams_path, class: 'sidebar-link waves-effect waves-dark sidebar-link' do %>
+              <i class="fa fa-table" aria-hidden="true"></i> Exams
             <% end %>
           </li>
           <li class="sidebar-item">              
-            <%= link_to exams_path, class: 'sidebar-link waves-effect waves-dark sidebar-link' do %>
-              <i class="fa fa-table" aria-hidden="true"></i> Exams
+            <%= link_to results_path, class: 'sidebar-link waves-effect waves-dark sidebar-link' do %>
+              <i class="fa fa-table" aria-hidden="true"></i> Results
             <% end %>
           </li>
         <% else %>
@@ -34,3 +34,9 @@
     </nav>
   </div>
 </aside>
+<style type="text/css">
+  .sidebar-link {
+    list-style: none;
+    text-decoration: none;
+  }
+</style>

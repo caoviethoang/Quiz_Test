@@ -1,3 +1,89 @@
 @import 'stylesheets/chartist-plugin-tooltip';
 @import 'stylesheets/chartist.min';
-@import 'stylesheets/style.min'
+@import 'stylesheets/style.min';
+@import 'stylesheets/fontawesome-all.min';
+@import "font-awesome";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #212529;
+}
+
+.start-btn,
+.infor-box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.start-btn button{
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    color: crimson;
+    font-weight: 500;
+    padding: 15px 30px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.infor-box{
+    width: 540px;
+    background: #fff;
+    border-radius: 5px;
+}
+
+.infor-box .infor-title{
+    height: 60px;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+    padding: 0 35px;
+    font-size:  20px;
+    font-weight: 600;
+}
+
+.infor-box .info-list{
+    padding: 15px 35px;
+
+}
+.infor-box .info-list .info{
+    margin: 5px 0;
+    font-size: 17px;
+}
+
+.infor-box .info-list .info span{
+    font-weight: 600;
+    color: darkred;
+}
+
+.infor-box .buttons{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 35px;
+    border-top: 1px solid lightgray;
+}
+
+.infor-box .buttons button{
+    margin: 0 5px;
+    height: 40px;
+    width: 100px;
+    border: 1px solid black;
+    background: lightgreen;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}

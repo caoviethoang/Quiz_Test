@@ -34,10 +34,16 @@ gem "devise-bootstrap5"
 gem 'bootstrap-sass'
 gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 gem 'jquery-rails', '~> 4.4'
+gem 'pagy'
+gem 'ransack'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
+gem 'select2-rails'
+gem 'will_paginate', '~> 3.3', '>= 3.3.1'
+gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'pry'
 end
 
 group :development do

@@ -3,7 +3,8 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: [:show, :edit, :update, :destroy]
 
   def index
-    @categories = Category.all
+    @q = Category.ransack(params[:q])
+    @pagy, @categories = pagy(@q.result(distinct: true))
   end
 
   def new
@@ -34,9 +35,8 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    if @category.destroy
-      redirect_to categories_path
-    end
+    @category.destroy
+    redirect_to categories_path
   end
 
   private

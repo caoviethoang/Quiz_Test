@@ -7,10 +7,10 @@
           Question <%= index+1 %>: <%= result.question.title %>
         </div>
         <div class="options" id="options">
-          <% result.question.answers.each do |answer_list| %>
-            <% answer_title = answer_list.title %>
+          <% result.question.answers.each do |answer| %>
+            <% answer_title = answer.title %>
             <label class="user-result">
-              <% if result.answer == answer_list %>
+              <% if result.answer == answer %>
                 <% if result.answer.iscorrected %>
                   <div class="user-answer" style="color: green;">
                     <input type="checkbox" checked="checked"><%= answer_title %>
@@ -20,7 +20,7 @@
                     <input type="checkbox" checked="checked"><%= answer_title %>
                   </div>
                 <% end %>
-              <% elsif answer_list.iscorrected %>
+              <% elsif answer.iscorrected %>
                 <div class="user-answer" style="color: green;">
                   <input type="checkbox"><%= answer_title %>
                 </div>

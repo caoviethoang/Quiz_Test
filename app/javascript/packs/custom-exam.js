@@ -1,23 +1,3 @@
-Session("StartTime") = DateTime.Now
-var endTime = Session("StartTime");
-
-const startingMenutes = 30;
-let time = startingMenutes * 60;
-
-const countDownElement = document.getElementById("countdown");
-
-setInterval(updateCountdown, 1000);
-
-function updateCountdown() {
-  const minutes = Math.floor(time / 60);
-  let seconds = time % 60;
-
-  seconds = seconds < 10 ? "0" + seconds : seconds;
-
-  countDownElement.innerHTML = `${minutes}:${seconds}`;
-  time--;
-}
-
 const start_btn = document.querySelector(".start-btn button");
 const info_box = document.querySelector(".info-box");
 const exit_btn = document.querySelector(".start .quit");

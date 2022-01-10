@@ -30,7 +30,7 @@ body {
   background-color: #fff;
 }
 .content .row {
-  background-color: rgb(50, 49, 53);
+  background-color: #343a40 !important;
 }
 .start-btn,
 .info-box,

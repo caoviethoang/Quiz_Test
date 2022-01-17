@@ -1,0 +1,95 @@
+<div class="content">
+  <div class="row">
+    <div class="content-question col-12 col-md-9" id="content-question">
+      <div class="container">
+        <div class="title">TEST</div>
+        <div class="question" id="result">
+          <%= render "form" %>
+        </div>
+      </div>
+    </div>
+    <div class="right-bar col-6 col-md-3" id="right-bar">
+      <div class="sidebar" >
+        <div class="timer">
+          <div class="clock">
+            <%= image_tag("icons8-clock-64.png", style: "width: 45px") %>
+          </div> &nbsp
+          <div class="time-minute" id="countdown"></div>
+        </div>
+        <br/>
+        <div class="right-side">
+          <div class="question-num" id="question-num">
+            <% @exam.results.first(5).each_with_index do |f, index|%>
+              <div class="question-circle" id="question-circle"><%= index+1 %></div>
+            <% end %>
+          </div>
+          <div class="question-num" id="question-num">
+            <% @exam.results.limit(5).offset(5).each_with_index do |f, index|%>
+              <div class="question-circle" id="question-circle">
+                <%= index+6 %>
+              </div>
+            <% end %>
+          </div>
+          <div class="question-num" id="question-num">
+            <% @exam.results.limit(5).offset(10).each_with_index do |f, index|%>
+              <div class="question-circle" id="question-circle">
+                <%= index+11 %>
+              </div>
+            <% end %>
+          </div>
+          <div class="question-num" id="question-num">
+            <% @exam.results.limit(5).offset(15).each_with_index do |f, index|%>
+              <div class="question-circle" id="question-circle">
+                <%= index+16 %>
+              </div>
+            <% end %>
+          </div>
+          <div class="question-num" id="question-num">
+            <% @exam.results.limit(5).offset(20).each_with_index do |f, index|%>
+              <div class="question-circle" id="question-circle">
+                <%= index+21 %>
+              </div>
+            <% end %>
+          </div>
+          <div class="question-num" id="question-num">
+            <% @exam.results.limit(5).offset(25).each_with_index do |f, index|%>
+              <div class="question-circle" id="question-circle">
+                <%= index+26 %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var totalSec    = <%= @remaining_time %>
+      countDiv    = document.getElementById("countdown"),
+      secpass,
+      countDown   = setInterval(function () {
+          secpass();
+      }, 1000);
+  function secpass() {
+    var min = Math.floor(totalSec / 60);
+    var sec  = totalSec % 60;
+    if (sec < 10) {
+      sec = "0" + sec;
+    }
+    if (min < 10) {
+      min = "0" + min;
+    }
+    countDiv.innerHTML = min + ":" + sec;
+    if (totalSec > 0) {
+      totalSec = totalSec - 1;
+    } 
+    else {
+      clearInterval(countDown);
+      countDiv.innerHTML = "Time out";
+      $(document).ready(function(){
+        $(".submit-exam").submit();
+      });
+    }
+  }
+</script>

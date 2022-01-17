@@ -1,0 +1,14 @@
+<%= form_with(model: @candidate) do |c| %>
+  <div class="mb-3">
+    <b><%= c.label :name, "Candidate's name", class: "form-label" %></b>
+    <%= c.text_field :title, class: "form-control" %>
+  </div>
+  <div class="mb-3">
+    <%= c.fields_for :exams do |e| %>
+      <b><%= e.label :title, "Exam ID", class: "form-label" %></b>
+      <%= e.text_field :id, class: "form-control" %>
+    <% end %>
+  </div>
+  <%= c.submit "Submit", class: "btn btn-success mt-3" %>
+  <%= link_to "Back", candidates_path, class: "btn btn-secondary mt-3" %>
+<% end %>

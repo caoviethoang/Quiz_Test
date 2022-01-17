@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   resources :results
-  resources :exams
+  resources :exams do
+    get 'generate', on: :member
+  end
   get 'thanks', to: 'exams#thanks'
+  resources :candidates
   resources :questions
   resources :answers
   resources :categories

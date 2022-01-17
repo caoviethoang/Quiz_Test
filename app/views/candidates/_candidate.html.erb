@@ -1,0 +1,11 @@
+<tr>
+  <th scope="row">
+    <%= candidate.id %>
+  </th>
+  <td><%= candidate.name %></td>
+  <td><%= candidate.exams %></td>
+  <td>
+    <%= link_to 'Delete', candidate, method: :delete, data: { confirm: 'Are you sure?' },
+                                                          class: 'btn btn-danger'%>
+  </td>
+</tr>

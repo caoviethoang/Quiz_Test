@@ -17,10 +17,7 @@
       </div>
       <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
         <ul class="navbar-nav ms-auto d-flex align-items-center">                       
-          <% if admin_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "Edit Profile", edit_admin_registration_path, class: 'nav-link' %>
-            </li>                           
+          <% if admin_signed_in? %>                         
             <li class="nav-item">
               <%= link_to "Sign out", destroy_admin_session_path,method: :delete, class: 'nav-link' %>
             </li>                                                 

@@ -29,6 +29,7 @@
 body {
   background-image: url(/assets/images/background.jpg);
 }
+
 .content .row {
   background-color: #343a40 !important;
 }

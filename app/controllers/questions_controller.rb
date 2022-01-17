@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
   layout "admin"
+
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def index

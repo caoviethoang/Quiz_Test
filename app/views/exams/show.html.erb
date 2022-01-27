@@ -1,6 +1,8 @@
 <div class="content" id="content-question">
   <div class="container">
     <div class="title">Exam <%= @exam.id %></div>
+    <p>Total time: <label class="title" id="time" style="font-size: 27px; color: red;"><%= @total_time %></label></p>
+    
     <div class="question" id="result">
       <% @exam.results.each_with_index do| result, index |%>
         <div class="py-2 h4">
@@ -37,3 +39,20 @@
     </div>
   </div>
 </div>
+<script>
+  var totalSec    = <%= @total_time %>
+  var time    = document.getElementById("time");
+  var hour = Math.floor(totalSec / 3600)
+  var min = Math.floor(totalSec / 60);
+  var sec  = Math.floor(totalSec % 60);
+  if (hour < 10) {
+    hour = "0" + hour;
+  }
+  if (min < 10) {
+    min = "0" + min;
+  }
+  if (sec < 10) {
+    sec = "0" + sec;
+  }
+  time.innerHTML = hour + ":" + min + ":" + sec;
+</script>

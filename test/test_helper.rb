@@ -8,6 +8,11 @@ class ActiveSupport::TestCase
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
-
+  
+  unless Webpacker.compiler.fresh?
+    puts "== Webpack compiling =="
+    Webpacker.compiler.compile
+    puts "== Webpack compiled =="
+  end
   # Add more helper methods to be used by all tests here...
 end

@@ -1,6 +1,6 @@
 <div class="content">
   <div class="row">
-    <div class="content-question col-12 col-md-9" id="content-question">
+    <div class="content-question col-12 col-md-8" id="content-question">
       <div class="container">
         <div class="title">TEST</div>
         <div class="question" id="result">
@@ -8,7 +8,7 @@
         </div>
       </div>
     </div>
-    <div class="right-bar col-6 col-md-3" id="right-bar">
+    <div class="right-bar col-6 col-md-4" id="right-bar">
       <div class="sidebar" >
         <div class="timer">
           <div class="clock">
@@ -18,46 +18,9 @@
         </div>
         <br/>
         <div class="right-side">
-          <div class="question-num" id="question-num">
-            <% @exam.results.first(5).each_with_index do |f, index|%>
-              <div class="question-circle" id="question-circle"><%= index+1 %></div>
-            <% end %>
-          </div>
-          <div class="question-num" id="question-num">
-            <% @exam.results.limit(5).offset(5).each_with_index do |f, index|%>
-              <div class="question-circle" id="question-circle">
-                <%= index+6 %>
-              </div>
-            <% end %>
-          </div>
-          <div class="question-num" id="question-num">
-            <% @exam.results.limit(5).offset(10).each_with_index do |f, index|%>
-              <div class="question-circle" id="question-circle">
-                <%= index+11 %>
-              </div>
-            <% end %>
-          </div>
-          <div class="question-num" id="question-num">
-            <% @exam.results.limit(5).offset(15).each_with_index do |f, index|%>
-              <div class="question-circle" id="question-circle">
-                <%= index+16 %>
-              </div>
-            <% end %>
-          </div>
-          <div class="question-num" id="question-num">
-            <% @exam.results.limit(5).offset(20).each_with_index do |f, index|%>
-              <div class="question-circle" id="question-circle">
-                <%= index+21 %>
-              </div>
-            <% end %>
-          </div>
-          <div class="question-num" id="question-num">
-            <% @exam.results.limit(5).offset(25).each_with_index do |f, index|%>
-              <div class="question-circle" id="question-circle">
-                <%= index+26 %>
-              </div>
-            <% end %>
-          </div>
+          <% (0...rows).each do |row|%>
+            <%= exam_process(row, @exam.results) %>
+          <% end %>
         </div>
       </div>
     </div>

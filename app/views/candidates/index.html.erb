@@ -5,35 +5,36 @@
         <%= link_to "New Candidate", new_candidate_path, class: "btn btn-info" %>
       </div>
     </div>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="white-box">
-            <br />
-            <h4>Candidate: 
-              <%= @candidates.count%> /
-              <%= Candidate.count %>
-            </h4>
-            <br />
-            <div class="table-responsive">
-              <table class="table table-borderless">
-                <thead>
-                  <tr>
-                    <th class="border-top-0">#</th>
-                    <th class="border-top-0"><b>Name</b></th>
-                    <th class="border-top-0"><b>Exam_id</b></th>
-                    <th class="border-top-0"><b>Functions</b></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <%= render @candidates %>               
-                </tbody>
-              </table>
-            </div>
-            <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="white-box">
+          <br />
+          <h4>Candidate: 
+            <%= @candidates.count%> /
+            <%= Candidate.count %>
+          </h4>
+          <br />
+          <div class="table-responsive">
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th class="border-top-0">#</th>
+                  <th class="border-top-0"><b>Name</b></th>
+                  <th class="border-top-0"><b>Mark</b></th>
+                  <th class="border-top-0"><b>Exam_id</b></th>
+                  <th class="border-top-0"><b>Functions</b></th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= render @candidates %>               
+              </tbody>
+            </table>
           </div>
-        </div> 
-      </div>         
-    </div>
+          <%== pagy_bootstrap_nav(@pagy) %>
+        </div>
+      </div> 
+    </div>         
   </div>
 </div>

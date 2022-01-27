@@ -2,9 +2,11 @@
   <th scope="row">
     <%= candidate.id %>
   </th>
-  <td><%= candidate.name %></td>
-  <td><%= candidate.exams %></td>
+  <td><%= candidate.first_name %> <%= candidate.last_name %></td>
+  <td><%= candidate.mark %></td>
+  <td><%= candidate.exam_id %></td>
   <td>
+    <%= link_to 'Update', edit_candidate_path(candidate), class: 'btn btn-warning' %>
     <%= link_to 'Delete', candidate, method: :delete, data: { confirm: 'Are you sure?' },
                                                           class: 'btn btn-danger'%>
   </td>

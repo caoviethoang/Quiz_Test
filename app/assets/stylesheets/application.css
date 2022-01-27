@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+*= require font-awesome
  */
 @import "hartist-plugin-tooltip";
 @import "chartist.min";
@@ -166,6 +167,10 @@ body {
   margin-bottom: 20px;
 }
 
+.content-question{
+ left: 40px; 
+}
+
 .sidebar {
   position: fixed;
   right: 50px;
@@ -257,7 +262,7 @@ body {
   list-style-type: lower-alpha;
 }
 
-#options label {
+.options label {
   display: block;
   margin-bottom: 15px;
   font-size: 17px;
@@ -392,4 +397,13 @@ body {
 
 .user-answer input {
   margin: 0 5px;
+}
+
+.create-exam{
+  margin-left: 40%;
+}
+
+.green {
+  background-color: greenyellow;
+  color: #fff;
 }

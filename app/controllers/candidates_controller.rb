@@ -1,15 +1,13 @@
 class CandidatesController < ApplicationController
   layout "admin"
-  before_action :set_question, only: [:destroy]
+  before_action :set_candidate, only: [:edit, :update, :destroy]
 
   def index
-    @c = Candidate.ransack(params[:q])
-    @pagy, @candidates = pagy(@c.result(distinct: true), items: 5)
+    @pagy, @candidates = pagy(Candidate.all, items: 5)
   end
 
   def new
     @candidate = Candidate.new
-    @candidate.exams.build
   end
 
   def create
@@ -21,8 +19,21 @@ class CandidatesController < ApplicationController
     end
   end
 
+  def edit
+    set_candidate
+  end
+
+  def update
+    if @candidate.update(candidate_params)
+      redirect_to candidates_path
+    else
+      flash[:danger] = "Update failed"
+      redirect_to "edit"
+    end
+  end
+
   def destroy
-    @candidate = Candidate.find(params[:id]).destroy
+    @candidate.destroy
     flash[:alert] = "Candidate was deleted."
     redirect_to candidates_path
   end
@@ -30,6 +41,10 @@ class CandidatesController < ApplicationController
   private
 
   def candidate_params
-    params.require(:candidate).permit(:name, answers_attributes: [:id])
+    params.require(:candidate).permit(:first_name, :last_name, :exam_id, :mark, exams_attributes: [:id])
+  end
+
+  def set_candidate
+    @candidate = Candidate.find(params[:id])
   end
 end

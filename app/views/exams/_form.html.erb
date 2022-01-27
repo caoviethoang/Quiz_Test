@@ -31,21 +31,17 @@
     var questionNumID = questionNum.attr("id").replace(/option-/, "");
     var isChecked = false;
 
-    $("#option-" + questionNumID + " > .checkbox > input[type='checkbox']").each(function(){
-
-      console.log($(this).is(":checked"));
-      console.log(questionNumID);
-  
+    $(`#option-${questionNumID} > .checkbox > input[type='checkbox']`).each(function(){
       if ($(this).is(":checked")){
         isChecked = true;
         return false;
       }
     });
-// nhu vay duoc chua anh
+    
     if (isChecked) {
-       $("#question-circle-" + questionNumID).addClass("green");
+       $(`#question-circle-${questionNumID}`).addClass("green");
     } else {
-       $("#question-circle-" + questionNumID).removeClass("green");
+       $(`#question-circle-${questionNumID}`).removeClass("green");
     }
   });    
 </script>

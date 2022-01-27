@@ -34,7 +34,7 @@ class CandidatesController < ApplicationController
 
   def destroy
     @candidate.destroy
-    flash[:alert] = "Candidate was deleted."
+    flash[:alert] = "Candidate has been deleted."
     redirect_to candidates_path
   end
 

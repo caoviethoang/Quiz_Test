@@ -1,4 +1,4 @@
 shared:
   test_time: 30
   question_per_row: 5
-  total_questions: 30
+  total_questions: 10

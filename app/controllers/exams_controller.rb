@@ -1,7 +1,8 @@
 class ExamsController < ApplicationController
-
   layout "application"
-  before_action :set_exam, only: [:show, :edit, :update, :destroy]
+
+  before_action :set_exam, only: [:show, :generate, :destroy]
+  before_action :in_progess_exam, only: [:edit, :update]
 
   def index
     @e = Exam.ransack(params[:q])
@@ -32,24 +33,20 @@ class ExamsController < ApplicationController
   end
 
   def update
-    if @exam.in_progess?
-      @exam.ended_at = Time.zone.now
-      @exam.finished!
-      if @exam.update(exam_params)
-        flash[:noti] = "Submit successful"
-        redirect_to thanks_path
-      else
-        flash[:danger] = "Submit failed"
-        redirect_to "edit"
-      end
+    @exam.ended_at = Time.zone.now
+    @exam.finished!
+    if @exam.update(exam_params)
+      flash[:noti] = "Submit successful!"
+      redirect_to thanks_path
     else
-      render :file => "#{Rails.root}/public/404.html",  layout: false, status: :not_found
+      flash[:danger] = "Submit failed!"
+      redirect_to "edit"
     end
   end
 
   def edit
     if @exam.results.empty?
-      @questions = Question.all.sample(10)
+      @questions = Question.all.sample(Settings.shared.total_questions)
       @questions.each do |question|
         @exam.results.build(question: question)
       end
@@ -73,7 +70,6 @@ class ExamsController < ApplicationController
   end
 
   def generate
-    set_exam
   end
 
   private
@@ -85,4 +81,8 @@ class ExamsController < ApplicationController
   def set_exam
     @exam = Exam.find_by(token: params[:token])
   end
-end 
+
+  def in_progess_exam
+    @exam = Exam.in_progess.find_by!(token: params[:token])
+  end
+end

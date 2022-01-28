@@ -6,6 +6,9 @@
       <%= question.title %>
     </div>
     <div class="options" id="option-<%= question.id %>"> 
+      <% if question.image.attached? %>
+        <p><%= image_tag question.image, style: "width: 450px; display: block;" %></p>
+      <% end %>
       <% question.answers.each do |answer| %>
         <label class="checkbox" id="checkbox">
           <%= result.check_box :answer_id, {}, answer.id, nil %>&nbsp; 

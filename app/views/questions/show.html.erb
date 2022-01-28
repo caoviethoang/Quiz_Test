@@ -7,6 +7,9 @@
           <p>Category: <%= @category %></p>
           <p>Kind: <%= @question.kind %></p>
           <p>Title: <%= @question.title %></p>
+          <% if @question.image.attached? %>
+            <p>Image: <%= image_tag @question.image, style: "width: 600px; display: block;" %></p>
+          <% end %>
           <%= link_to 'Edit', edit_question_path(@question), class: 'btn btn-danger' %>
           <%= link_to 'Back', questions_path, class: 'btn btn-secondary' %>
         </div>

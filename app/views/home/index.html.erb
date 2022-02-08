@@ -1,0 +1,78 @@
+<div class="page-wrapper">
+  <div class="page-breadcrumb bg-white">
+    <div class="row align-items-center">
+      <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+        <h4 class="page-title">Dashboard</h4>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-lg-4 col-md-12">
+        <div class="white-box analytics-info">
+          <h3 class="box-title">Total Candidates</h3>
+          <ul class="list-inline two-part d-flex align-items-center mb-0">
+            <li class="ms-auto">
+            <span class="counter text-success"><%= Candidate.count %></span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12">
+        <div class="white-box analytics-info">
+          <h3 class="box-title">Total Exams</h3>
+          <ul class="list-inline two-part d-flex align-items-center mb-0">
+            <li class="ms-auto"><span class="counter text-purple"><b><%= Exam.count %></span></li></b>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-12">
+        <div class="white-box analytics-info">
+          <h3 class="box-title">Total Questions</h3>
+            <ul class="list-inline two-part d-flex align-items-center mb-0">
+              <li class="ms-auto"><span class="counter text-info"><b><%= Question.count %></span></li></b>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+          <div class="white-box">
+            <div class="d-md-flex mb-3">
+              <h3 class="box-title mb-0">Score Ranking</h3>
+              <%= render "search" %>
+            </div>
+            <div class="table-responsive">
+              <table class="table no-wrap table-striped">
+                <thead>
+                  <tr>
+                    <th class="border-top-0">#</th>
+                    <th class="border-top-0">
+                      <%= sort_link(@q, :last_name, "Name") %>
+                    </th>
+                    <th class="border-top-0">
+                      <%= sort_link(@q, :mark, "Score", default_order: :desc) %>
+                    </th>
+                    <th class="border-top-0">
+                      <%= sort_link(@q, :updated_at, "Date") %>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% @candidates.each_with_index do |candidate, index| %>
+                    <tr>
+                      <td><%= index+1 %></td>
+                      <td><%= candidate.first_name %> <%= candidate.last_name %></td>
+                      <td><%= candidate.mark %></td>
+                      <td><%= candidate.updated_at.strftime("%d/%m/%Y") %></td>
+                    </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <%== pagy_bootstrap_nav(@pagy) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

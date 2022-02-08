@@ -13,9 +13,12 @@
     "popper.js": "^1.16.1",
     "select2": "^4.1.0-rc.0",
     "select2-bootstrap-theme": "^0.1.0-beta.10",
-    "turbolinks": "^5.2.0",
     "ua-compatible": "^0.0.0",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "start": "SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts start",
+    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && react-scripts build"
   },
   "version": "0.1.0",
   "devDependencies": {
@@ -24,6 +27,6 @@
     "babel-loader": "^8.2.3",
     "gulp": "^4.0.2",
     "webpack": "^4.46.0",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^3"
   }
 }

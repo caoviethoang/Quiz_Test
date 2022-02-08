@@ -16,7 +16,8 @@ module ZinzaTest
     # These settings can be overridden in specific environments using the files
     # in config/environments, which are processed later.
     #
-    # config.time_zone = "Hanoi"
+    config.time_zone = 'Hanoi'
+    # config.active_record.default_timezone = :local
     # config.eager_load_paths << Rails.root.join("extras")
     config.action_dispatch.default_headers = {
       'X-Frame-Options' => 'DENY',

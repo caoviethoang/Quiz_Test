@@ -1,7 +1,47 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-7">
-        <%= link_to  'Add random 30 questions',new_exam_path, class: 'btn btn-info mt-0 mb-3' %>
+<%= form_for(@exam, :html => {:class => "submit-exam"}) do |f| %>
+  <%= f.fields_for :results do |result| %>
+    <% question = result.object.question %>
+    <div class="py-2 h4">
+      Question <%= result.options[:child_index] + 1 %>:
+      <%= question.title %>
     </div>
+    <div class="options" id="option-<%= question.id %>"> 
+      <% question.answers.each do |answer| %>
+        <label class="checkbox" id="checkbox">
+          <%= result.check_box :answer_id, {}, answer.id, nil %>&nbsp; 
+          <%= answer.title %>
+        </label>
+      <% end %>
+      <div class="input-group mb-1">Other: 
+        <%= result.text_field :text_answer, class: "form-control", id: "text-answer" %> 
+      </div>
+    </div>
+    <%= result.hidden_field :question_id, value: question.id %>
+  <% end %>
+  <div class="paginate"></div>
+  <div class="submit-result">
+    <%= f.submit "SUBMIT", data: {:disable_with => "Saving..."}, data: { confirm: "Are you sure ?" },
+                                                   class: "btn btn-success mt-3" %>
   </div>
-</div>
+<% end %>
+
+<script>
+  $("input[type='checkbox']").change(function(){
+    var questionNum = $(this).closest("div");
+    var questionNumID = questionNum.attr("id").replace(/option-/, "");
+    var isChecked = false;
+
+    $(`#option-${questionNumID} > .checkbox > input[type='checkbox']`).each(function(){
+      if ($(this).is(":checked")){
+        isChecked = true;
+        return false;
+      }
+    });
+    
+    if (isChecked) {
+       $(`#question-circle-${questionNumID}`).addClass("green");
+    } else {
+       $(`#question-circle-${questionNumID}`).removeClass("green");
+    }
+  });    
+</script>

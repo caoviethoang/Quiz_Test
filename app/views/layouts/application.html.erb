@@ -6,8 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application", media: "all" %>
+    <%= javascript_pack_tag "application" %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script> src="https://kit.fontawesome.com/a076d05399.js" </script>
@@ -19,10 +19,14 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
   <body>
-    <%= render 'layout_exam/navbar' %>
+    <%= render "layout_exam/navbar" %>
     <div class="container-fluid">
+      <% flash.each do |type, msg| %>
+        <div class="alert alert-info">
+          <%= msg %>
+        </div>
+      <% end %>
       <%= yield %>
-      <%= javascript_pack_tag 'custom-exam' %>
     </div>
   </body>
 </html>

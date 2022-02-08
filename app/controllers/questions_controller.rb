@@ -1,5 +1,6 @@
 class QuestionsController < ApplicationController
-  layout 'admin'
+  layout "admin"
+
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -19,7 +20,7 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to questions_path
     else
-      render 'new'
+      render "new"
     end
   end
 
@@ -35,8 +36,8 @@ class QuestionsController < ApplicationController
     if @question.update(question_params)
       redirect_to questions_path
     else
-      flash[:danger] = 'Update failed'
-      redirect_to 'edit'
+      flash[:danger] = "Update failed"
+      redirect_to "edit"
     end
   end
 
@@ -48,7 +49,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :kind, :category_id, answers_attributes: [:id, :title, :iscorrected, :textfield, :_destroy])
+    params.require(:question).permit(:title, :kind, :category_id, answers_attributes: [:id, :title, :corrected, :_destroy])
   end
 
   def set_question

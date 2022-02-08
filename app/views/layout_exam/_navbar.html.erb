@@ -5,13 +5,14 @@
   </button>
   <div class="collapse navbar-collapse">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <b class="logo-icon">
-          <%= link_to '/' do %>
-            <%= image_tag("ZINZA.png",:alt => "root", style: 'width: 50px;') %>
-          <% end %>
-        </b>
-      </li>
+        <a class="navbar-brand" style="border-bottom: 1px solid #2f323e;background: #fff; border-radius: 5px" href="/">
+          <b class="logo-icon">
+            <%= image_tag("logo-icon.png", :alt => "admin#index") %>
+          </b>
+          <span class="logo-text">
+            <%= image_tag("logo-text.png", :alt => "admin#index") %>
+          </span>
+        </a>
     </ul>
   </div>
 </nav>

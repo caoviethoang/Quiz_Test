@@ -1,0 +1,22 @@
+<div class="page-wrapper">
+  <div class="container">
+        <div class="white-box" style="height: 700px;" >
+          <%= form_for(@exam) do |f| %>
+            <%= f.label :title, "Select Questions", style: "font-size: 30px; font-weight: 550;" %>
+            <%= f.collection_select :question_ids, @questions, :id, :title, {}, class:"select-question form-control mt-5",
+              multiple: "multiple" %><br/>
+            <br/>
+            <%= f.submit "Create Exam",class: "btn btn-success create-exam" %><br />
+          <% end %>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $( ".select-question" ).select2({
+      data: data
+      theme: "bootstrap",
+    }).val("").trigger("change");
+  });
+</script>

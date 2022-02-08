@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_095128) do
+ActiveRecord::Schema.define(version: 2022_01_27_013443) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,9 +30,24 @@ ActiveRecord::Schema.define(version: 2022_01_10_095128) do
     t.integer "question_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.text "textfield"
     t.index ["question_id", "created_at"], name: "index_answers_on_question_id_and_created_at"
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "candidates", force: :cascade do |t|
+    t.string "first_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.float "mark"
+    t.integer "exam_id"
+    t.string "last_name"
+  end
+
+  create_table "candidates_exams", id: false, force: :cascade do |t|
+    t.integer "candidate_id"
+    t.integer "exam_id"
+    t.index ["candidate_id"], name: "index_candidates_exams_on_candidate_id"
+    t.index ["exam_id"], name: "index_candidates_exams_on_exam_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -44,6 +59,11 @@ ActiveRecord::Schema.define(version: 2022_01_10_095128) do
   create_table "exams", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "started_at"
+    t.string "token"
+    t.datetime "ended_at"
+    t.integer "status", default: 0
+    t.index ["token"], name: "index_exams_on_token"
   end
 
   create_table "questions", force: :cascade do |t|

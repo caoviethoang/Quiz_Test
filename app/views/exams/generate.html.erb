@@ -1,0 +1,37 @@
+<div class="content">
+  <div class="row">
+    <div class="content-start" id="content-start">
+      <div class="start-btn "><button>READY !</button></div>
+      <div class="info-box">
+        <div class="info-title">
+          <span>Some rules of this Test !</span>
+        </div>
+        <div class="info-list">
+          <div class="info">1. You will have only <span>30 minutes</span> to complete this test.</div>
+          <div class="info">2. You can select one or many answers per question.</div>
+          <div class="info">3. If there isn't correct answer, you can enter your answer in the textbox below.</div>
+          <div class="info">4. When the time is up or when you exit from the test, your work will be automatically submitted.</div>
+          <div class="info">5. You will get points on the basis of your correct anwsers.</div>
+        </div>
+          <div class="start">
+            <button class="quit">EXIT</button>
+            <%= link_to "START", edit_exam_path(@exam), class: "btn btn-primary continue" %>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+    $(".start-btn").on("click", function() {
+      $(".start-btn").hide();
+      $(".info-box").show();
+    });
+
+    $(".quit").on("click", function() {
+      $(".start-btn").show();
+      $(".info-box").hide();
+    });
+  });
+</script>

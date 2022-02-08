@@ -6,7 +6,7 @@ class ExamsController < ApplicationController
 
   def index
     @e = Exam.ransack(params[:q])
-    @pagy, @exams = pagy(@e.result(distinct: true), items: 5)
+    @pagy, @exams = pagy(@e.result(distinct: true))
   end
 
   def new
@@ -57,7 +57,12 @@ class ExamsController < ApplicationController
   end
   
   def show
-    @total_time = @exam.ended_at - @exam.started_at
+    if @exam.ended_at?
+      @total_time = @exam.ended_at - @exam.started_at
+    else
+      flash[:danger] = "The exam hasn't been taken yet!"
+      redirect_to exams_path
+    end
   end
 
   def destroy
@@ -75,7 +80,7 @@ class ExamsController < ApplicationController
   private
 
   def exam_params
-    params.require(:exam).permit(results_attributes: [:id, :question_id, :answer_id, :text_answer])
+    params.require(:exam).permit(results_attributes: [:id, :question_id, {:answer_ids => []}, :text_answer])
   end
 
   def set_exam

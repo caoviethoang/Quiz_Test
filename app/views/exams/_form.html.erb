@@ -11,7 +11,7 @@
       <% end %>
       <% question.answers.each do |answer| %>
         <label class="checkbox" id="checkbox">
-          <%= result.check_box :answer_id, {}, answer.id, nil %>&nbsp; 
+          <%= result.check_box :answer_ids, {multiple: true}, answer.id, nil %>&nbsp; 
           <%= answer.title %>
         </label>
       <% end %>
@@ -21,7 +21,6 @@
     </div>
     <%= result.hidden_field :question_id, value: question.id %>
   <% end %>
-  <div class="paginate"></div>
   <div class="submit-result">
     <%= f.submit "SUBMIT", data: {:disable_with => "Saving..."}, data: { confirm: "Are you sure ?" },
                                                    class: "btn btn-success mt-3" %>
@@ -42,9 +41,9 @@
     });
     
     if (isChecked) {
-       $(`#question-circle-${questionNumID}`).addClass("green");
+      $(`#question-circle-${questionNumID}`).addClass("green");
     } else {
-       $(`#question-circle-${questionNumID}`).removeClass("green");
+      $(`#question-circle-${questionNumID}`).removeClass("green");
     }
-  });    
+  });
 </script>

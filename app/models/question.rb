@@ -5,6 +5,8 @@ class Question < ApplicationRecord
   
   validates :title, presence: true
   
+  validates :title, presence: true
+  
   accepts_nested_attributes_for :answers, allow_destroy: true
 
 end

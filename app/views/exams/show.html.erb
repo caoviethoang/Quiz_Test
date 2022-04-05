@@ -12,8 +12,8 @@
           <% result.question.answers.each do |answer| %>
             <% answer_title = answer.title %>
             <label class="user-result">
-              <% if result.answer == answer %>
-                <% if result.answer.corrected %>
+              <% if result.answers.where(id: answer.id).any? %>
+                <% if answer.corrected %>
                   <div class="user-answer" style="color: green;">
                     <input type="checkbox" checked="checked"><%= answer_title %>
                   </div>

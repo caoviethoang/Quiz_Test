@@ -14,7 +14,7 @@
  *= require_self
 *= require font-awesome
  */
-@import "hartist-plugin-tooltip";
+@import "chartist-plugin-tooltip";
 @import "chartist.min";
 @import "style.min";
 @import "fontawesome-all.min";
@@ -370,7 +370,7 @@ body {
 }
 
 #text-answer {
-  background-color: rgb(247, 247, 247);
+  background-color: #fff;
   outline: none;
   border: none;
   border-bottom: 1px solid rgba(156, 153, 153, 0.911);

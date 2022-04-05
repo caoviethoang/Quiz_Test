@@ -1,9 +1,10 @@
 class CandidatesController < ApplicationController
   layout "admin"
+  
   before_action :set_candidate, only: [:edit, :update, :destroy]
 
   def index
-    @pagy, @candidates = pagy(Candidate.all, items: 5)
+    @pagy, @candidates = pagy(Candidate.all)
   end
 
   def new

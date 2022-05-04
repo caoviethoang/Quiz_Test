@@ -2,38 +2,45 @@
   <div class="container">
     <div class="title">Exam <%= @exam.id %></div>
     <p>Total time: <label class="title" id="time" style="font-size: 27px; color: red;">
-      <%= @total_time %></label></p>
+      <%= @total_time %></label>
+    </p>
+    <p>Total mark: <label class="title mr-3" style="font-size: 27px; color: red;">
+      <%= @total_mark %></label>
+    </p>
     <div class="question" id="result">
       <% @exam.results.each_with_index do| result, index |%>
         <div class="py-2 h4">
-          Question <%= index+1 %>: <%= result.question.title %>
+          Question <%= index + 1 %>: <%= result.question.title %>
         </div>
         <div class="options" id="options">
-          <% result.question.answers.each do |answer| %>
-            <% answer_title = answer.title %>
-            <label class="user-result">
-              <% if result.answers.where(id: answer.id).any? %>
-                <% if answer.corrected %>
+          <% if result.question.text? %>
+            <div class="input-group mb-1">
+              Answer: <b style="color: blue; padding: 0 5px;"><%= result.text_answer %></b>
+            </div>
+          <% else %>
+            <% result.question.answers.each do |answer| %>
+              <% answer_title = answer.title %>
+              <label class="user-result">
+                <% if result.answers.where(id: answer.id).any? %>
+                  <% if answer.corrected %>
+                    <div class="user-answer" style="color: green;">
+                      <input type="checkbox" checked="checked"><%= answer_title %>
+                    </div>
+                  <% else %>
+                    <div class="user-answer">
+                      <input type="checkbox" checked="checked"><%= answer_title %>
+                    </div>
+                  <% end %>
+                <% elsif answer.corrected %>
                   <div class="user-answer" style="color: green;">
-                    <input type="checkbox" checked="checked"><%= answer_title %>
+                    <input type="checkbox"><%= answer_title %>
                   </div>
                 <% else %>
-                  <div class="user-answer">
-                    <input type="checkbox" checked="checked"><%= answer_title %>
-                  </div>
+                  <div class="user-answer"><input type="checkbox"><%= answer_title %></div>
                 <% end %>
-              <% elsif answer.corrected %>
-                <div class="user-answer" style="color: green;">
-                  <input type="checkbox"><%= answer_title %>
-                </div>
-              <% else %>
-                <div class="user-answer"><input type="checkbox"><%= answer_title %></div>
-              <% end %>
-            </label>
+              </label>
+            <% end %>
           <% end %>
-          <div class="input-group mb-1">
-            Other: <b style="color: blue; padding: 0 5px;"><%= result.text_answer %></b>
-          </div>
         </div>
       <% end %>
     </div>

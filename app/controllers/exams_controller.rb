@@ -45,6 +45,8 @@ class ExamsController < ApplicationController
   end
 
   def edit
+    @pagy, @results = pagy(@exam.results)
+
     if @exam.results.empty?
       @questions = Question.all.sample(Settings.shared.total_questions)
       @questions.each do |question|
@@ -59,6 +61,7 @@ class ExamsController < ApplicationController
   def show
     if @exam.ended_at?
       @total_time = @exam.ended_at - @exam.started_at
+      @total_mark =  @exam.results.count  
     else
       flash[:danger] = "The exam hasn't been taken yet!"
       redirect_to exams_path

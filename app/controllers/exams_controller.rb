@@ -46,7 +46,6 @@ class ExamsController < ApplicationController
 
   def edit
     @pagy, @results = pagy(@exam.results)
-
     if @exam.results.empty?
       @questions = Question.all.sample(Settings.shared.total_questions)
       @questions.each do |question|

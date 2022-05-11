@@ -42,6 +42,10 @@ gem 'bootstrap-kaminari-views'
 gem 'rubocop'
 gem 'paper_trail'
 gem 'cancancan'
+gem 'will_paginate', '~> 3.3', '>= 3.3.1'
+gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.2'
+gem "config"
+gem "friendly_id"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -70,4 +74,4 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'webrick', '~> 1.7'
+gem "webrick", "~> 1.7"

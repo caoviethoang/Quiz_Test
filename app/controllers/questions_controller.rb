@@ -49,7 +49,7 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :image, :category_id, answers_attributes: [:id, :title, :corrected, :_destroy])
+    params.require(:question).permit(:title, :kind, :image, :category_id, answers_attributes: [:id, :title, :corrected, :_destroy])
   end
 
   def set_question

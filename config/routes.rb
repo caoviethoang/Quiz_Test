@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :results
   resources :exams, param: :token do
     get "generate", on: :member

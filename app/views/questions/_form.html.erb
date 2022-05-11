@@ -11,18 +11,12 @@
     <%= q.file_field :image %>
   </div>
   <div class="mb-3">
-    <div class="form-check">
-      <%= q.radio_button :kind, 'single', :checked => true %> 
-      <%= label :kind_single, 'Single choice' %>
-    </div>
-    <div class="form-check">
-      <%= q.radio_button :kind, 'multi' %>
-      <%= label :kind_multi, 'Multiple choices' %>
-    </div>
-    <div class="form-check">
-      <%= q.radio_button :kind, 'text' %>
-      <%= label :kind_multi, 'Text Field' %>
-    </div>
+    <% Question.kinds.each_key do |kind|%>
+      <div class="form-check">
+        <%= q.radio_button :kind, kind, checked: kind == q.object.kind %> 
+        <%= label :kind, t(".#{kind}"), value: kind %>
+      </div>
+    <% end %>
   </div>
   <div class="field answers-container">
     <table class="table table-borderless" id="answer-list">

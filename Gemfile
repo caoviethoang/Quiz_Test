@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) { |repo| 'https://github.com/#{repo}.git' }
 
 ruby '3.0.1'
 
@@ -27,8 +27,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'devise-bootstrap-views', '~> 1.1'
-gem "devise-i18n"
-gem "devise-bootstrap5"
+gem 'devise-i18n'
+gem 'devise-bootstrap5'
 gem 'bootstrap-sass'
 gem 'bootstrap', '~> 5.1', '>= 5.1.3'
 gem 'jquery-rails', '~> 4.4'
@@ -36,6 +36,12 @@ gem 'pagy'
 gem 'ransack'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
 gem 'select2-rails'
+gem 'config'
+gem 'kaminari'
+gem 'bootstrap-kaminari-views'
+gem 'rubocop'
+gem 'paper_trail'
+gem 'cancancan'
 gem 'will_paginate', '~> 3.3', '>= 3.3.1'
 gem 'will_paginate-bootstrap', '~> 1.0', '>= 1.0.2'
 gem "config"

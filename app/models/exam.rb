@@ -6,6 +6,7 @@ class Exam < ApplicationRecord
   has_many :results, dependent: :destroy
   has_many :questions
   has_and_belongs_to_many :candidates
+  belongs_to :user
   
   before_create :generate_token
   

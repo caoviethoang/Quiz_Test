@@ -1,4 +1,5 @@
 class ExamsController < ApplicationController
+  load_and_authorize_resource
   layout "application"
 
   before_action :set_exam, only: [:show, :generate, :destroy]
@@ -6,7 +7,7 @@ class ExamsController < ApplicationController
 
   def index
     @e = Exam.ransack(params[:q])
-    @pagy, @exams = pagy(@e.result(distinct: true), items: 5)
+    @pagy, @exams = pagy(@e.result(distinct: true))
   end
 
   def new
@@ -45,6 +46,8 @@ class ExamsController < ApplicationController
   end
 
   def edit
+    @pagy, @results = pagy(@exam.results)
+
     if @exam.results.empty?
       @questions = Question.all.sample(Settings.shared.total_questions)
       @questions.each do |question|
@@ -57,7 +60,21 @@ class ExamsController < ApplicationController
   end
   
   def show
-    @total_time = @exam.ended_at - @exam.started_at
+    if @exam.ended_at?
+      @total_time = @exam.ended_at - @exam.started_at
+      @total_mark = 0
+      @exam.results.each do |result|
+        result.question.answers.each do |answer|
+          if result.answers.where(id: answer.id).any?
+            @total_mark +=1 if answer.corrected
+            @total_mark
+          end
+        end
+      end
+    else
+      flash[:danger] = "The exam hasn't been taken yet!"
+      redirect_to exams_path
+    end
   end
 
   def destroy
@@ -75,7 +92,7 @@ class ExamsController < ApplicationController
   private
 
   def exam_params
-    params.require(:exam).permit(results_attributes: [:id, :question_id, :answer_id, :text_answer])
+    params.require(:exam).permit(:user_id, results_attributes: [:id, :question_id, {:answer_ids => []}, :text_answer])
   end
 
   def set_exam

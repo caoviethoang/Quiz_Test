@@ -1,30 +1,51 @@
 <%= form_for(@exam, :html => {:class => "submit-exam"}) do |f| %>
   <%= f.fields_for :results do |result| %>
     <% question = result.object.question %>
-    <div class="py-2 h4">
-      Question <%= result.options[:child_index] + 1 %>:
-      <%= question.title %>
-    </div>
-    <div class="options" id="option-<%= question.id %>"> 
-      <% if question.image.attached? %>
-        <p><%= image_tag question.image, style: "width: 450px; display: block;" %></p>
-      <% end %>
-      <% question.answers.each do |answer| %>
-        <label class="checkbox" id="checkbox">
-          <%= result.check_box :answer_id, {}, answer.id, nil %>&nbsp; 
-          <%= answer.title %>
-        </label>
-      <% end %>
-      <div class="input-group mb-1">Other: 
-        <%= result.text_field :text_answer, class: "form-control", id: "text-answer" %> 
+      <div class="quiz-question mt-4">
+        <div class="px-4">
+            <div class="col-xs-10"><div class="quiz-que-margin">
+              Question <%= result.options[:child_index] + 1 %>: <%= question.title %>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <%= result.hidden_field :question_id, value: question.id %>
+      <% if question.text? %>
+        <div class="input-group mb-1">Input text: 
+          <%= result.text_field :text_answer, class: "form-control", id: "text-answer" %> 
+        </div>
+      <% else %>
+      <div class="quiz-question-answer">
+        <div class="radio radio-success">
+          <label for="radio11">
+              <div class="px-4">
+                <div class="col-xs-10">
+                  <div class="quiz-ans-margin">
+                    <div class="options" id="option-<%= question.id %>"> 
+                      <% if question.image.attached? %>
+                        <p><%= image_tag question.image, style: "width: 450px; display: block;" %></p>
+                      <% end %>
+                      <% question.answers.each do |answer| %>
+                        <label class="checkbox" id="checkbox">
+                          <%= result.check_box :answer_ids, {multiple: true}, answer.id, nil %>&nbsp; 
+                          <%= answer.title %>
+                        </label>
+                      <% end %>  
+                    </div>
+                    <%= result.hidden_field :question_id, value: question.id %>
+                  </div>
+                </div>
+              </div> 
+          </label>
+        </div>
+      </div>
+    <% end %>
   <% end %>
-  <div class="paginate"></div>
+  <div class="exam-paginate mt-4" >
+  <%== pagy_bootstrap_nav(@pagy) %>
+  </div>
   <div class="submit-result">
     <%= f.submit "SUBMIT", data: {:disable_with => "Saving..."}, data: { confirm: "Are you sure ?" },
-                                                   class: "btn btn-success mt-3" %>
+                                                   class: "btn btn-success mt-3 mb-3" %>
   </div>
 <% end %>
 
@@ -42,9 +63,23 @@
     });
     
     if (isChecked) {
-       $(`#question-circle-${questionNumID}`).addClass("green");
+      $(`#question-circle-${questionNumID}`).addClass("green");
     } else {
-       $(`#question-circle-${questionNumID}`).removeClass("green");
+      $(`#question-circle-${questionNumID}`).removeClass("green");
     }
-  });    
+  });
+
+  document.getElementById("text-answer").value = getSavedValue("text-answer");
+  
+  function saveValue(e){
+    var id = e.id;
+    var val = e.value;
+    localStorage.setItem(id, val);
+  }
+  function getSavedValue  (v){
+    if (!localStorage.getItem(v)) {
+      return "";
+    }
+    return localStorage.getItem(v);
+  }
 </script>

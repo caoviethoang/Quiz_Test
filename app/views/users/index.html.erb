@@ -2,7 +2,7 @@
   <div class="page-breadcrumb bg-white">
     <div class="row align-items-center">
       <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-        <%= link_to "New Candidate", new_candidate_path, class: "btn btn-info" %>
+        <%= link_to "New user", new_user_path, class: "btn btn-info" %>
       </div>
     </div>
   </div>
@@ -11,9 +11,9 @@
       <div class="col-sm-12">
         <div class="white-box">
           <br />
-          <h4>Candidate: 
-            <%= @candidates.count%> /
-            <%= Candidate.count %>
+          <h4>user: 
+            <%= @users.count%> /
+            <%= User.count %>
           </h4>
           <br />
           <div class="table-responsive">
@@ -22,13 +22,15 @@
                 <tr>
                   <th class="border-top-0">#</th>
                   <th class="border-top-0"><b>Name</b></th>
-                  <th class="border-top-0"><b>Mark</b></th>
+                  <th class="border-top-0"><b>Birthday</b></th>
+                  <th class="border-top-0"><b>Email</b></th>
+                  <th class="border-top-0"><b>Password</b></th>
                   <th class="border-top-0"><b>Exam_id</b></th>
-                  <th class="border-top-0"><b>Functions</b></th>
+                  <th class="border-top-0"></th>
                 </tr>
               </thead>
               <tbody>
-                <%= render @candidates %>               
+                <%= render @users %>               
               </tbody>
             </table>
           </div>

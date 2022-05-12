@@ -1,5 +1,5 @@
 class Result < ApplicationRecord
   belongs_to :exam
   belongs_to :question
-  belongs_to :answer, optional: true
+  has_and_belongs_to_many :answers
 end

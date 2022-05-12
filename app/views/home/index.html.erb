@@ -10,10 +10,10 @@
     <div class="row justify-content-center">
       <div class="col-lg-4 col-md-12">
         <div class="white-box analytics-info">
-          <h3 class="box-title">Total Candidates</h3>
+          <h3 class="box-title">Total users</h3>
           <ul class="list-inline two-part d-flex align-items-center mb-0">
             <li class="ms-auto">
-            <span class="counter text-success"><%= Candidate.count %></span></li>
+            <span class="counter text-success"><%= User.count %></span></li>
           </ul>
         </div>
       </div>
@@ -49,21 +49,23 @@
                     <th class="border-top-0">
                       <%= sort_link(@q, :last_name, "Name") %>
                     </th>
+                    <th class="border-top-0">Email</th>
+                    <th class="border-top-0">Birthday</th>
+                    <th class="border-top-0">Mark</th>
                     <th class="border-top-0">
-                      <%= sort_link(@q, :mark, "Score", default_order: :desc) %>
-                    </th>
-                    <th class="border-top-0">
-                      <%= sort_link(@q, :updated_at, "Date") %>
+                      <%= sort_link(@q, :updated_at, "Join date") %>
                     </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <% @candidates.each_with_index do |candidate, index| %>
+                  <% @users.each_with_index do |user, index| %>
                     <tr>
                       <td><%= index+1 %></td>
-                      <td><%= candidate.first_name %> <%= candidate.last_name %></td>
-                      <td><%= candidate.mark %></td>
-                      <td><%= candidate.updated_at.strftime("%d/%m/%Y") %></td>
+                      <td><%= user.first_name %> <%= user.last_name %></td>
+                      <td><%= user.email %></td>
+                      <td><%= user.birtday %></td>
+                      <td></td>
+                      <td><%= user.updated_at.strftime("%d/%m/%Y") %></td>
                     </tr>
                   <% end %>
                 </tbody>

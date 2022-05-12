@@ -2,7 +2,7 @@
   <div class="scroll-sidebar">
     <nav class="sidebar-nav">
       <ul id="sidebarnav">
-        <% if admin_signed_in? %>         
+        <% if user_signed_in? %>         
           <li class="sidebar-item">              
             <%= link_to categories_path, class: "sidebar-link waves-effect waves-dark sidebar-link" do %>
               <i class="fa fa-bar-chart" aria-hidden="true"></i><b>Categories</b>
@@ -19,8 +19,8 @@
             <% end %>
           </li>
           <li class="sidebar-item">              
-            <%= link_to candidates_path, class: "sidebar-link waves-effect waves-dark sidebar-link" do %>
-              <i class="fa fa-user-circle-o" aria-hidden="true"></i><b>Candidates</b>
+            <%= link_to users_path, class: "sidebar-link waves-effect waves-dark sidebar-link" do %>
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i><b>Users</b>
             <% end %>
           </li>
         <% else %>

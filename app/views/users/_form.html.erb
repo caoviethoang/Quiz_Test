@@ -1,0 +1,40 @@
+<%= form_with(model: @user) do |c| %>
+<div class="col-6">
+  <div class='form-group'>
+    <div class="mb-3">
+      <b><%= c.label :title, "First name", class: "form-label" %></b>
+      <%= c.text_field :first_name, class: "form-control" %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <div class="mb-3">
+      <b><%= c.label :title, "Last name", class: "form-label" %></b>
+      <%= c.text_field :last_name, class: "form-control" %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <div class="mb-3">
+      <b><%= c.label :title, "Birthday", class: "form-label" %></b>
+      <%= c.date_field :birtday, class: "form-control" %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <div class="mb-3">
+      <b><%= c.label :title, "Account", class: "form-label" %></b>
+      <%= c.text_field :email, class: "form-control" %>
+    </div>
+  <div class='form-group'>
+    <div class="mb-3">
+      <b><%= c.label :title, "Password", class: "form-label" %></b>
+      <%= c.text_field :password, class: "form-control" %>
+    </div>
+  </div>
+  <div class='form-group'>
+    <div class="mb-3">
+      <b><%= c.label :title, "Exam ID", class: "form-label" %></b>
+      <%= c.text_field :exam_id, class: "form-control" %>
+    </div>
+  </div>
+  <%= c.submit "Submit", class: "btn btn-success mt-3" %>
+  <%= link_to "Back", users_path, class: "btn btn-secondary mt-3" %>
+<% end %>

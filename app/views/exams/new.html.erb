@@ -1,6 +1,16 @@
 <div class="form-group mt-3">
   <%= form_with model: @exam do |e| %>
-    <%= e.submit "Create Exam", class: "btn btn-success" %>
-    <%= link_to "Back", exams_path, class: "btn btn-secondary" %>
+    <div class='form-group col-6'>
+      <div class="mb-3">
+        <b><%= e.label :title, 'User Id', class: 'form-label' %></b>
+        <%= e.text_field :user_id, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='form-group col-6'>
+      <div class="mb-3">
+        <%= e.submit "Create Exam", class: "btn btn-success" %>
+        <%= link_to "Back", exams_path, class: "btn btn-secondary" %>
+      </div>
+    </div>
   <% end %>
 </div>

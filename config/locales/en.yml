@@ -31,3 +31,8 @@
 
 en:
   hello: "Hello world"
+  questions:
+    form:
+      single: 'Single choice'
+      multiple: 'Multiple choices'
+      text: 'Text question'
